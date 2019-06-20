@@ -14,14 +14,12 @@ public class Main {
 
         try {
             while (true) {
-                Thread.sleep(5);
+                Thread.sleep(3);
                 bird.fall();
             }
         } catch (InterruptedException e) {
             System.out.println("deu merda");
         }
-
-
 
     }
 }

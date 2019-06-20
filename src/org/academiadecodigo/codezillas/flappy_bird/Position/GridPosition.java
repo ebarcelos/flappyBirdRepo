@@ -5,9 +5,8 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 public class GridPosition {
     private int xPos;
     private int yPos;
-    public int height;
-    public int width;
-    public final int PADDING = 10;
+    public static int height;
+    public static int width;
     Rectangle canvas;
 
     public GridPosition() {
@@ -17,7 +16,7 @@ public class GridPosition {
         this.width = width;
         this.height = height;
 
-        canvas = new Rectangle(PADDING, PADDING, width, height);
+        canvas = new Rectangle(0, 0, width, height);
     }
 
     public void init () {
@@ -41,12 +40,11 @@ public class GridPosition {
     }
 
     public void setY(int yValue) {
-//        if (yValue < (height - 50)){
-//            this.yPos = yValue;
-//            return;
-//        }
-//        this.yPos = height-50;
-        this.yPos = yValue;
+        if (yValue < (height - 50)){
+            this.yPos = yValue;
+            return;
+        }
+        this.yPos = height-50;
     }
 
     public int getHeight() {
