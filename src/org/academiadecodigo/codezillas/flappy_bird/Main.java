@@ -1,7 +1,9 @@
 package org.academiadecodigo.codezillas.flappy_bird;
 
 import org.academiadecodigo.codezillas.flappy_bird.Element.Bird;
+import org.academiadecodigo.codezillas.flappy_bird.Element.Obstacle;
 import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
+import org.academiadecodigo.codezillas.flappy_bird.Position.ObstacleFactory;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,6 +14,8 @@ public class Main {
         Bird bird = new Bird();
         bird.initBird();
 
+        ObstacleFactory.getObstacle();
+
         try {
             while (true) {
                 Thread.sleep(3);
@@ -20,6 +24,5 @@ public class Main {
         } catch (InterruptedException e) {
             System.out.println("deu merda");
         }
-
     }
 }
