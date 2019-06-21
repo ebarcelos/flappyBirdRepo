@@ -40,11 +40,7 @@ public class GridPosition {
     }
 
     public void setY(int yValue) {
-        if (yValue < (height - 50)){
-            this.yPos = yValue;
-            return;
-        }
-        this.yPos = height-50;
+        this.yPos = yValue;
     }
 
     public int getHeight() {

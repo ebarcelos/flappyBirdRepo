@@ -1,6 +1,6 @@
 package org.academiadecodigo.codezillas.flappy_bird;
 
-import org.academiadecodigo.codezillas.flappy_bird.Element.Bird;
+import org.academiadecodigo.codezillas.flappy_bird.Bird.Bird;
 import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
 
 public class Main {
@@ -14,8 +14,10 @@ public class Main {
 
         try {
             while (true) {
-                Thread.sleep(3);
+                Thread.sleep(5);
                 bird.fall();
+                bird.jump();
+
             }
         } catch (InterruptedException e) {
             System.out.println("deu merda");
