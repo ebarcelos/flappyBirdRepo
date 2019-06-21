@@ -8,11 +8,13 @@ import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Bird {
 
     private Position position;
     private Ellipse ellipse;
+    private Picture picture;
 
     private double timer;
     private static final double TIMER_MAX = 2;
@@ -20,10 +22,17 @@ public class Bird {
     private boolean timerStarted;
     private boolean isJumping;
 
-
     public Bird() {
-        this.position = new Position(50, (720 / 2) - (50 / 2));
-        this.ellipse = new Ellipse(position.getX(), position.getY(), 50, 50);
+
+        position = new Position(50, (720 / 2) - (50 / 2));
+        ellipse = new Ellipse(position.getX(), position.getY(), 50, 50);
+        picture = new Picture(ellipse.getX(), ellipse.getY(),"resources/bird_frame0.png");
+
+    }
+
+    public void initBird() {
+        picture.draw();
+
     }
 
     public void setJumpfalse() {
@@ -43,18 +52,17 @@ public class Bird {
     }
 
 
-    public void initBird() {
-        ellipse.setColor(Color.BLACK);
-        ellipse.fill();
-    }
+
 
     public void fall() {
 
         int yInit = position.getY();
 
         if (position.getY() + 50 < GridPosition.height) {
-            this.position.setY(yInit + 1);
+            this.position.setY(yInit + 2);
+            picture.translate(0, this.position.getY() - yInit);
             ellipse.translate(0, this.position.getY() - yInit);
+
         }
 
     }
@@ -81,15 +89,18 @@ public class Bird {
         k.addEventListener(spaceRelease);
 
         if (timerStarted) {
-
+            picture.load("resources/bird_frame0.png");
             timer += 0.1;
             if (position.getY() > 0) {
                 int yInit = position.getY();
-                this.position.setY(yInit - 7);
+                this.position.setY(yInit - 8);
                 ellipse.translate(0, this.position.getY() - yInit);
+                picture.translate(0, this.position.getY() - yInit);
+
             }
 
             if (timer > TIMER_MAX) {
+                picture.load("resources/bird_frame1.png");
                 timerStarted = false;
                 timer = 0;
             }

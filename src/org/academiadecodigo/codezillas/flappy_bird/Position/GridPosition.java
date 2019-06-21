@@ -51,3 +51,4 @@ public class GridPosition {
         return width;
     }
 }
+

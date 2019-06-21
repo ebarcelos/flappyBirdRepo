@@ -7,16 +7,17 @@ public class Main {
     public static void main(String[] args) {
 
         GridPosition grid = new GridPosition(1280, 720);
-        grid.init();
 
         Bird bird = new Bird();
+
+        grid.init();
         bird.initBird();
 
         try {
             while (true) {
                 Thread.sleep(5);
-                bird.fall();
                 bird.jump();
+                bird.fall();
 
             }
         } catch (InterruptedException e) {
