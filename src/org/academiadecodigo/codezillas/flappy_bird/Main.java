@@ -12,10 +12,23 @@ public class Main {
         Bird bird = new Bird();
         bird.initBird();
 
+        Background background = new Background();
+        background.initBackground();
+
+
+//        try {
+//            while (true) {
+//                Thread.sleep(3);
+//                bird.fall();
+//            }
+//        } catch (InterruptedException e) {
+//            System.out.println("deu merda");
+//        }
+
         try {
             while (true) {
-                Thread.sleep(3);
-                bird.fall();
+                Thread.sleep(5);
+                background.scroll();
             }
         } catch (InterruptedException e) {
             System.out.println("deu merda");
