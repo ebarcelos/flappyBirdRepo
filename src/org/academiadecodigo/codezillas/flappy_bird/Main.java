@@ -8,13 +8,12 @@ public class Main {
 
         GridPosition grid = new GridPosition(1280, 720);
 
-        Bird bird = new Bird();
-
-        grid.init();
-        bird.initBird();
-
         Background background = new Background();
         background.initBackground();
+
+        Bird bird = new Bird();
+        grid.init();
+        bird.initBird();
 
 //        try {
 //            while (true) {
