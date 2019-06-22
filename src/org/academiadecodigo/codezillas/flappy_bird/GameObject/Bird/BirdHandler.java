@@ -1,5 +1,6 @@
 package org.academiadecodigo.codezillas.flappy_bird.GameObject.Bird;
 
+import org.academiadecodigo.codezillas.flappy_bird.GameObject.GameObject;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
@@ -16,6 +17,7 @@ public class BirdHandler implements KeyboardHandler {
         if (!bird.isJumping()) {
             bird.startTimer();
             bird.setJumptrue();
+            bird.initBird();
         }
     }
 

@@ -3,8 +3,13 @@ package org.academiadecodigo.codezillas.flappy_bird.Position;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class GridPosition {
+
     private int xPos;
     private int yPos;
+    private int obstacleX1;
+    private int obstacleY1;
+    private int obstacleX2;
+    private int obstacleY2;
     public static int height;
     public static int width;
     Rectangle canvas;
@@ -39,6 +44,23 @@ public class GridPosition {
         this.xPos = xValue;
     }
 
+    //*
+    public void setObstacleX1(int obstacleX1) {
+        this.obstacleX1 = obstacleX1;
+    }
+
+    public void setObstacleY1(int obstacleY1) {
+        this.obstacleY1 = obstacleY1;
+    }
+
+    public void setObstacleX2(int obstacleX2) {
+        this.obstacleX2 = obstacleX2;
+    }
+
+    public void setObstacleY2(int obstacleY2) {
+        this.obstacleY2 = obstacleY2;
+    }
+
     public void setY(int yValue) {
         this.yPos = yValue;
     }
@@ -51,4 +73,3 @@ public class GridPosition {
         return width;
     }
 }
-

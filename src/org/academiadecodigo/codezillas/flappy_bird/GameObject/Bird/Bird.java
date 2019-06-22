@@ -3,10 +3,12 @@ package org.academiadecodigo.codezillas.flappy_bird.GameObject.Bird;
 import org.academiadecodigo.codezillas.flappy_bird.GameObject.GameObject;
 import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
 import org.academiadecodigo.codezillas.flappy_bird.Position.Position;
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Ellipse;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Bird implements GameObject {
@@ -23,9 +25,9 @@ public class Bird implements GameObject {
 
     public Bird() {
 
-        position = new Position(50, (720 / 2) - (50 / 2));
+        position = new Position(50, (720 - 150) - (50 / 2));
         ellipse = new Ellipse(position.getX(), position.getY(), 50, 50);
-        picture = new Picture(ellipse.getX(), ellipse.getY(),"resources/bird_frame0.png");
+        picture = new Picture(ellipse.getX(), ellipse.getY(),"resources/img/BirdNest.png");
 
     }
 
@@ -57,7 +59,7 @@ public class Bird implements GameObject {
 
         int yInit = position.getY();
 
-        if (position.getY() + 50 < GridPosition.height) {
+        if (position.getY() + 150 < GridPosition.height) {
             this.position.setY(yInit + 2);
             picture.translate(0, this.position.getY() - yInit);
             ellipse.translate(0, this.position.getY() - yInit);
@@ -88,7 +90,7 @@ public class Bird implements GameObject {
         k.addEventListener(spaceRelease);
 
         if (timerStarted) {
-            picture.load("resources/bird_frame0.png");
+            picture.load("resources/img/BirdUp.png");
             timer += 0.1;
             if (position.getY() > 0) {
                 int yInit = position.getY();
@@ -99,7 +101,7 @@ public class Bird implements GameObject {
             }
 
             if (timer > TIMER_MAX) {
-                picture.load("resources/bird_frame1.png");
+                picture.load("resources/img/BirdDown.png");
                 timerStarted = false;
                 timer = 0;
             }
