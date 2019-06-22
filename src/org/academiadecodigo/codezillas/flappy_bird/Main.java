@@ -15,21 +15,6 @@ public class Main {
         RunBird runBird = new RunBird();
         runBird.start();
 
-//        Bird bird = new Bird();
-//        bird.initBird();
-
-//        try {
-//            while (true) {
-//
-//                Thread.sleep(5);
-//                bird.jump();
-//                bird.fall();
-//
-//            }
-//        } catch (InterruptedException e) {
-//            System.out.println("deu merda");
-//        }
-
 
         try {
             while (true) {
