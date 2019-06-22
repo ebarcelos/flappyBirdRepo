@@ -7,14 +7,16 @@ public class Main {
     public static void main(String[] args) {
 
         GridPosition grid = new GridPosition(1280, 720);
-
-        Bird bird = new Bird();
-
         grid.init();
-        bird.initBird();
 
         Background background = new Background();
         background.initBackground();
+
+        RunBird runBird = new RunBird();
+        runBird.start();
+
+//        Bird bird = new Bird();
+//        bird.initBird();
 
 //        try {
 //            while (true) {
