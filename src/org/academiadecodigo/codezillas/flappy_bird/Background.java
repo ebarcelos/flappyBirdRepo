@@ -9,7 +9,7 @@ public class Background {
 
     public Background() {
         this.position = new Position(0, 0);
-        this.picture = new Picture(0, 0, "resources/background.jpg");
+        this.picture = new Picture(0, 0, "resources/background3.jpg");
 
     }
 
@@ -20,11 +20,12 @@ public class Background {
 
     public void scroll() {
         int xInit = this.position.getX();
-        System.out.println(position.getX());
+        //System.out.println(position.getX());
         this.position.setX(xInit - 1);
 
         if (position.getX() <= -1280) {
             this.position.setX(0);
+            picture.translate(0,0);
         }
 
         picture.translate(this.position.getX() - xInit, 0);

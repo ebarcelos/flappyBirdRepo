@@ -1,6 +1,6 @@
 package org.academiadecodigo.codezillas.flappy_bird;
 
-import org.academiadecodigo.codezillas.flappy_bird.Bird.Bird;
+import org.academiadecodigo.codezillas.flappy_bird.Bird.RunBird;
 import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
 
 //test
@@ -20,7 +20,7 @@ public class Main {
         try {
             while (true) {
 
-                Thread.sleep(50);
+                Thread.sleep(10);
                 background.scroll();
 
             }
