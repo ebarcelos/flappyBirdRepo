@@ -1,6 +1,6 @@
 package org.academiadecodigo.codezillas.flappy_bird;
 
-import org.academiadecodigo.codezillas.flappy_bird.Bird.Bird;
+import org.academiadecodigo.codezillas.flappy_bird.GameObject.Bird.Bird;
 import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
 
 public class Main {
