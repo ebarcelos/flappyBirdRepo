@@ -16,6 +16,7 @@ public class Main {
         background.initBackground();
 
 
+
 //        try {
 //            while (true) {
 //                Thread.sleep(3);
@@ -27,7 +28,7 @@ public class Main {
 
         try {
             while (true) {
-                Thread.sleep(5);
+                Thread.sleep(50);
                 background.scroll();
             }
         } catch (InterruptedException e) {
