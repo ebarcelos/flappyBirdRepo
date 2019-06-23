@@ -2,23 +2,19 @@ package org.academiadecodigo.codezillas.flappy_bird.Bird;
 
 import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
 import org.academiadecodigo.codezillas.flappy_bird.Position.Position;
-import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Ellipse;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Bird {
 
+    private static final double TIMER_MAX = 2;
     private Position position;
     private Ellipse ellipse;
     private Picture picture;
-
     private double timer;
-    private static final double TIMER_MAX = 2;
-
     private boolean timerStarted;
     private boolean isJumping;
 
@@ -26,7 +22,7 @@ public class Bird {
 
         position = new Position(50, (720 / 2) - (50 / 2));
         ellipse = new Ellipse(position.getX(), position.getY(), 50, 50);
-        picture = new Picture(ellipse.getX(), ellipse.getY(),"resources/bird_frame0.png");
+        picture = new Picture(ellipse.getX(), ellipse.getY(), "resources/bird_frame0.png");
 
     }
 
@@ -50,8 +46,6 @@ public class Bird {
     public void startTimer() {
         timerStarted = true;
     }
-
-
 
 
     public void fall() {

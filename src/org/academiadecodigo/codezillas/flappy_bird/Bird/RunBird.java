@@ -1,7 +1,5 @@
 package org.academiadecodigo.codezillas.flappy_bird.Bird;
 
-import org.academiadecodigo.codezillas.flappy_bird.Bird.Bird;
-
 public class RunBird extends Thread {
 
     @Override
