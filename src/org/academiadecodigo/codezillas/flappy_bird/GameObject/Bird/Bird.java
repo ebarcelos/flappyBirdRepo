@@ -5,6 +5,7 @@ import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
 import org.academiadecodigo.codezillas.flappy_bird.Position.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Ellipse;
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -28,12 +29,28 @@ public class Bird implements GameObject {
         position = new Position(50, (720 - 150) - (50 / 2));
         ellipse = new Ellipse(position.getX(), position.getY(), 50, 50);
         picture = new Picture(ellipse.getX(), ellipse.getY(),"resources/img/BirdNest.png");
+        //picture.grow(-25, -25);
 
     }
 
     public void initBird() {
         picture.draw();
+        BirdHandler birdHandler = new BirdHandler();
+        KeyboardEvent spacePress = new KeyboardEvent();
+        KeyboardEvent spaceRelease = new KeyboardEvent();
 
+        birdHandler.setBird(this);
+
+        spacePress.setKey(KeyboardEvent.KEY_SPACE);
+        spacePress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+
+        spaceRelease.setKey(KeyboardEvent.KEY_SPACE);
+        spaceRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+
+        Keyboard k = new Keyboard(birdHandler);
+
+        k.addEventListener(spacePress);
+        k.addEventListener(spaceRelease);
     }
 
     public void setJumpfalse() {
@@ -59,7 +76,7 @@ public class Bird implements GameObject {
 
         int yInit = position.getY();
 
-        if (position.getY() + 150 < GridPosition.height) {
+        if (position.getY() + 200 < GridPosition.height) {
             this.position.setY(yInit + 2);
             picture.translate(0, this.position.getY() - yInit);
             ellipse.translate(0, this.position.getY() - yInit);
@@ -71,7 +88,7 @@ public class Bird implements GameObject {
 
     public void jump() {
 
-
+/*
         BirdHandler birdHandler = new BirdHandler();
         KeyboardEvent spacePress = new KeyboardEvent();
         KeyboardEvent spaceRelease = new KeyboardEvent();
@@ -88,7 +105,7 @@ public class Bird implements GameObject {
 
         k.addEventListener(spacePress);
         k.addEventListener(spaceRelease);
-
+*/
         if (timerStarted) {
             picture.load("resources/img/BirdUp.png");
             timer += 0.1;
@@ -108,6 +125,11 @@ public class Bird implements GameObject {
         }
 
 
+    }
+
+    public int getBounds(){
+        picture.getHeight();
+        return 0;
     }
 }
 
