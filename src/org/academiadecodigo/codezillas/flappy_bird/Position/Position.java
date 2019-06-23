@@ -7,4 +7,10 @@ public class Position extends GridPosition {
         setY(Y);
     }
 
+    public Position(int x1, int y1, int x2, int y2) {
+        setObstacleX1(x1);
+        setObstacleY1(y1);
+        setObstacleX2(x2);
+        setObstacleY2(y2);
+    }
 }
