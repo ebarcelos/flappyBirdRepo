@@ -10,8 +10,10 @@ public class RunBird implements Runnable {
         while (true) {
             bird.jump();
             bird.fall();
+            bird.initBird();
 
             try {
+
                 Thread.sleep(5);
                 bird.initBird();
             } catch (InterruptedException e) {
