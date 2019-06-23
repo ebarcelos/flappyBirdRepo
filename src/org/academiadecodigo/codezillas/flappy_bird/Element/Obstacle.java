@@ -20,7 +20,7 @@ public class Obstacle {
 
     public Obstacle() {
         int genTopRectPos = genTopRectPos();
-        position = new Position(Position.width + obstWidth, genTopRectPos);
+        position = new Position(Position.width, genTopRectPos);
         topRectangle = new Rectangle(position.getX(), genTopRectPos, obstWidth, obstHeight);
         bottomRectangle = new Rectangle(position.getX(), position.getY() + obstHeight + minTopHeight + opening, obstWidth, obstHeight);
     }
