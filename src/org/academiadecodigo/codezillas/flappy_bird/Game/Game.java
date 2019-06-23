@@ -1,39 +1,33 @@
  package org.academiadecodigo.codezillas.flappy_bird.Game;
 
+import org.academiadecodigo.codezillas.flappy_bird.GameObject.Background;
 import org.academiadecodigo.codezillas.flappy_bird.GameObject.Bird.*;
+import org.academiadecodigo.codezillas.flappy_bird.GameObject.GameObject;
+import org.academiadecodigo.codezillas.flappy_bird.GameObject.Obstacle.ObstacleFactory;
 import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
-import org.academiadecodigo.codezillas.flappy_bird.GameObject.Obstacle.RunObstacle;
-import org.academiadecodigo.codezillas.flappy_bird.GameObject.RunBackground;
 
 public class Game {
-    private Thread background;
-    private Thread birdie;
-    private Thread obs;
 
-    public void init(){
+    public void init() {
         GridPosition grid = new GridPosition(1280, 720);
         grid.init();
 
+        Background background = new Background();
+        background.initBackground();
 
-        this.background = new Thread(new RunBackground());
-        //background.start();
+        GameObject x = ObstacleFactory.getNewObstacle();
+        x.init();
 
-        //this.obs = new Thread(new RunObstacle());
-        //obs.start();
+        RunBird runBird = new RunBird();
+        runBird.start();
 
-        this.birdie = new Thread(new RunBird());
-        birdie.start();
-
-        start();
-
-    }
-
-    public void start(){
         try {
             while (true) {
-                Thread.sleep(5);
-                Thread.sleep(50);
-                background.start();
+
+                Thread.sleep(15);
+                x.moveObstacle();
+                background.scroll();
+                x.moveObstacle();
             }
         } catch (InterruptedException e) {
             System.out.println("deu merda");

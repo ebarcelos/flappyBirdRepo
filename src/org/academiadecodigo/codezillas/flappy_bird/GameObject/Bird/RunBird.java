@@ -7,7 +7,7 @@ public class RunBird extends Thread {
     private Bird bird;
     @Override
     public void run() {
-        this.bird = new Bird();
+        Bird bird = new Bird(150, 150);
         bird.initBird();
 
         try {

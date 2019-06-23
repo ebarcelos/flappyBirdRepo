@@ -18,7 +18,13 @@ public class CollisionDetector {
         this.gameObjects = gameObjects;
     }*/
 
-    public static boolean isCollided(Ellipse bird){
+    public static boolean isCollided(Ellipse bird, Rectangle obstacle){
+
+
+        return false;
+    }
+
+    public static boolean collisionCheck(Ellipse bird, Rectangle obstacle1, Rectangle obstacle2){
 
 
         return false;
