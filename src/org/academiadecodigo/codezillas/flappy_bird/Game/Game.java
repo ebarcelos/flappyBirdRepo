@@ -4,6 +4,7 @@ import org.academiadecodigo.codezillas.flappy_bird.GameObject.Background;
 import org.academiadecodigo.codezillas.flappy_bird.GameObject.Bird.*;
 import org.academiadecodigo.codezillas.flappy_bird.GameObject.GameObject;
 import org.academiadecodigo.codezillas.flappy_bird.GameObject.Obstacle.ObstacleFactory;
+import org.academiadecodigo.codezillas.flappy_bird.Main;
 import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
 
 public class Game {
@@ -15,12 +16,17 @@ public class Game {
         Background background = new Background();
         background.initBackground();
 
+        Sound music = new Sound("/resources/sound/music/colhao_colhao80kbps.wav");
+        music.play();
+
         GameObject x = ObstacleFactory.getNewObstacle();
         x.init();
 
         RunBird runBird = new RunBird();
         runBird.start();
 
+        Menu menu = new Menu();
+        menu.initMenu();
         try {
             while (true) {
 
