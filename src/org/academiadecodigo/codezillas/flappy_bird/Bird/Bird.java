@@ -15,6 +15,8 @@ public class Bird {
     private Position position;
     private Ellipse ellipse;
     private Picture picture;
+    private int birdWidth;
+    private int birdHeight;
 
     private double timer;
     private static final double TIMER_MAX = 2;
@@ -22,10 +24,11 @@ public class Bird {
     private boolean timerStarted;
     private boolean isJumping;
 
-    public Bird() {
-
-        position = new Position(50, (720 / 2) - (50 / 2));
-        ellipse = new Ellipse(position.getX(), position.getY(), 50, 50);
+    public Bird(int birdWidth, int birdHeight) {
+        this.birdWidth = birdWidth;
+        this.birdHeight = birdHeight;
+        position = new Position(50, (720 / 2) - (this.birdHeight / 2));
+        ellipse = new Ellipse(position.getX(), position.getY(), this.birdWidth, this.birdHeight);
         picture = new Picture(ellipse.getX(), ellipse.getY(),"resources/bird_frame0.png");
 
     }
