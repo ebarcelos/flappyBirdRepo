@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class RunBird extends Thread {
 
-    Bird bird = new Bird(150, 150);
+    Bird bird = new Bird(50, 50);
 
     @Override
     public void run() {
@@ -17,7 +17,6 @@ public class RunBird extends Thread {
                 bird.jump();
                 bird.fall();
                 bird.initBird();
-
             }
         } catch (InterruptedException e) {
             System.out.println("deu merda");

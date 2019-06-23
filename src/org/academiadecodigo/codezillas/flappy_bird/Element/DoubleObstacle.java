@@ -61,6 +61,8 @@ public class DoubleObstacle implements Obstacle {
         checkFinalPosition();
     }
 
+
+
     private void checkFinalPosition () {
         this.passedBird = (this.position.getX() + obstWidth) < 0;
     }

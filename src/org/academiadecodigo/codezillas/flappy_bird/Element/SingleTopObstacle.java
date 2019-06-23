@@ -27,11 +27,12 @@ public class SingleTopObstacle implements Obstacle {
     }
 
     public void init() {
-        //hitbox.setColor(Color.GREEN);
-        //hitbox.draw();
         picture.draw();
     }
 
+    public Rectangle getHitbox(){
+        return hitbox;
+    }
     @Override
     public void moveObstacle() {
         int initX = position.getX();

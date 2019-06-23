@@ -30,14 +30,18 @@ public class SingleBottomObstacle implements Obstacle {
         picture.draw();
     }
 
+    public Rectangle getHitbox(){
+        return hitbox;
+    }
+
     @Override
     public void moveObstacle() {
         int initX = position.getX();
         position.setX(position.getX() - 1);
+
         hitbox.translate(position.getX() - initX, 0);
 
         picture.translate(position.getX() - initX, 0);
-
         checkFinalPosition();
     }
 
