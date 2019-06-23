@@ -1,7 +1,7 @@
 package org.academiadecodigo.codezillas.flappy_bird;
 
 import org.academiadecodigo.codezillas.flappy_bird.Bird.RunBird;
-import org.academiadecodigo.codezillas.flappy_bird.Element.Obstacle;
+import org.academiadecodigo.codezillas.flappy_bird.Element.RunObstacle;
 import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
 
 //test
@@ -18,19 +18,13 @@ public class Main {
         RunBird runBird = new RunBird();
         runBird.start();
 
-        Obstacle obstacle = new Obstacle();
-        obstacle.init();
+        RunObstacle runObstacle = new RunObstacle();
+        runObstacle.run();
 
         try {
             while (true) {
-
                 Thread.sleep(10);
                 background.scroll();
-                obstacle.moveObstacle();
-                if (obstacle.hasPassedBird()) {
-                    obstacle = new Obstacle();
-                    obstacle.init();
-                }
 
             }
         } catch (InterruptedException e) {

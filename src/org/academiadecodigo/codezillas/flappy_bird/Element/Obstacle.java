@@ -43,7 +43,6 @@ public class Obstacle {
         topRectangle.translate(position.getX() - initX, 0);
         bottomRectangle.translate(position.getX() - initX, 0);
         checkFinalPosition();
-        System.out.println(position.getX());
     }
 
     private void checkFinalPosition () {
