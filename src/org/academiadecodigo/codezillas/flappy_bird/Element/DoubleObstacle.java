@@ -2,14 +2,15 @@ package org.academiadecodigo.codezillas.flappy_bird.Element;
 
 import org.academiadecodigo.codezillas.flappy_bird.Position.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+
+import java.awt.*;
 
 public class DoubleObstacle implements Obstacle {
 
     private Position position;
-    private Rectangle topRectangle;
-    private Rectangle bottomRectangle;
+    private Rectangle topHitbox;
+    private Rectangle bottomHitbox;
     private Picture topPicture;
     private Picture bottomPicture;
     private boolean passedBird;
@@ -23,11 +24,11 @@ public class DoubleObstacle implements Obstacle {
         int genTopRectPos = genTopRectPos();
         position = new Position(Position.width, genTopRectPos);
 
-        topRectangle = new Rectangle(position.getX(), genTopRectPos, obstWidth, obstHeight);
-        bottomRectangle = new Rectangle(position.getX(), position.getY() + obstHeight + minTopHeight + opening, obstWidth, obstHeight);
+        topHitbox = new Rectangle(position.getX(), genTopRectPos, obstWidth, obstHeight);
+        bottomHitbox = new Rectangle(position.getX(), position.getY() + obstHeight + minTopHeight + opening, obstWidth, obstHeight);
 
-        topPicture = new Picture(topRectangle.getX(), topRectangle.getY(), topType.getPath());
-        bottomPicture = new Picture(bottomRectangle.getX(), bottomRectangle.getY(), bottomType.getPath());
+        topPicture = new Picture(topHitbox.getX(), topHitbox.getY(), topType.getPath());
+        bottomPicture = new Picture(bottomHitbox.getX(), bottomHitbox.getY(), bottomType.getPath());
     }
 
     private int genTopRectPos () {
@@ -36,11 +37,11 @@ public class DoubleObstacle implements Obstacle {
     }
 
     public void init() {
-        topRectangle.setColor(Color.GREEN);
-        bottomRectangle.setColor(Color.YELLOW);
+        //topHitbox.setColor(Color.GREEN);
+        //bottomHitbox.setColor(Color.YELLOW);
 
-        topRectangle.draw();
-        bottomRectangle.draw();
+        //topHitbox.draw();
+        //bottomHitbox.draw();
 
         topPicture.draw();
         bottomPicture.draw();
@@ -51,8 +52,8 @@ public class DoubleObstacle implements Obstacle {
         int initX = position.getX();
         position.setX(position.getX() - 1);
 
-        topRectangle.translate(position.getX() - initX, 0);
-        bottomRectangle.translate(position.getX() - initX, 0);
+        topHitbox.translate(position.getX() - initX, 0);
+        bottomHitbox.translate(position.getX() - initX, 0);
 
         topPicture.translate(position.getX() - initX, 0);
         bottomPicture.translate(position.getX() - initX, 0);
@@ -70,5 +71,15 @@ public class DoubleObstacle implements Obstacle {
 
     public boolean hasPassedMiddle() {
         return position.getX() < (position.getWidth()/2);
+    }
+
+    public boolean checkCollision(Rectangle birdHitbox){
+
+        if(topHitbox.intersects(birdHitbox) || bottomHitbox.intersects(birdHitbox) ){
+            System.out.println("yes");
+            return true;
+        }
+        return false;
+
     }
 }

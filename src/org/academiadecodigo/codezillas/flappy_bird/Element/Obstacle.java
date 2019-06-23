@@ -1,5 +1,7 @@
 package org.academiadecodigo.codezillas.flappy_bird.Element;
 
+import java.awt.*;
+
 public interface Obstacle {
     void moveObstacle();
 
@@ -8,4 +10,6 @@ public interface Obstacle {
     boolean hasPassedBird();
 
     boolean hasPassedMiddle();
+
+    boolean checkCollision(Rectangle target);
 }

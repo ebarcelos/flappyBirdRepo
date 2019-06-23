@@ -1,14 +1,14 @@
 package org.academiadecodigo.codezillas.flappy_bird.Element;
 
 import org.academiadecodigo.codezillas.flappy_bird.Position.Position;
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+
+import java.awt.*;
 
 public class SingleBottomObstacle implements Obstacle {
 
     private Position position;
-    private Rectangle bottomRectangle;
+    private Rectangle hitbox;
     private Picture picture;
     private boolean passedBird;
     private int obstWidth;
@@ -19,15 +19,14 @@ public class SingleBottomObstacle implements Obstacle {
         this.obstHeight = height;
 
         position = new Position(Position.width, Position.height);
-        bottomRectangle = new Rectangle(position.getX(), position.getY()-obstHeight, obstWidth, obstHeight);
+        hitbox = new Rectangle(position.getX(), position.getY()-obstHeight, obstWidth, obstHeight);
 
-        picture = new Picture(bottomRectangle.getX(), bottomRectangle.getY(), type.getPath());
-        picture.grow(bottomRectangle.getWidth() - picture.getWidth(), bottomRectangle.getHeight() - picture.getHeight());
+        picture = new Picture(hitbox.getX(), hitbox.getY(), type.getPath());
+        picture.grow(hitbox.getWidth() - picture.getWidth(), hitbox.getHeight() - picture.getHeight());
     }
 
     public void init() {
-        bottomRectangle.setColor(Color.ORANGE);
-        bottomRectangle.draw();
+
         picture.draw();
     }
 
@@ -35,7 +34,7 @@ public class SingleBottomObstacle implements Obstacle {
     public void moveObstacle() {
         int initX = position.getX();
         position.setX(position.getX() - 1);
-        bottomRectangle.translate(position.getX() - initX, 0);
+        hitbox.translate(position.getX() - initX, 0);
 
         picture.translate(position.getX() - initX, 0);
 
@@ -54,4 +53,14 @@ public class SingleBottomObstacle implements Obstacle {
         return position.getX() < (position.getWidth()/2);
     }
 
+    public boolean checkCollision(Rectangle birdHitbox){
+
+        if(hitbox.intersects(birdHitbox)){
+            System.out.println("yes");
+            return true;
+
+        }
+        return false;
+
+    }
 }

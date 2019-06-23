@@ -4,7 +4,6 @@ import org.academiadecodigo.codezillas.flappy_bird.Bird.RunBird;
 import org.academiadecodigo.codezillas.flappy_bird.Element.RunObstacle;
 import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
 
-//test
 public class Main {
     public static void main(String[] args) {
 
@@ -25,6 +24,8 @@ public class Main {
             while (true) {
                 Thread.sleep(10);
                 background.scroll();
+                runObstacle.runGame(runBird.birdHitbox());
+
 
             }
         } catch (InterruptedException e) {

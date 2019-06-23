@@ -2,18 +2,18 @@ package org.academiadecodigo.codezillas.flappy_bird.Bird;
 
 import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
 import org.academiadecodigo.codezillas.flappy_bird.Position.Position;
-import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Ellipse;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+
+import java.awt.*;
 
 public class Bird {
 
     private Position position;
-    private Ellipse ellipse;
+    private Rectangle hitbox;
     private Picture picture;
     private int birdWidth;
     private int birdHeight;
@@ -28,13 +28,17 @@ public class Bird {
         this.birdWidth = birdWidth;
         this.birdHeight = birdHeight;
         position = new Position(50, (720 / 2) - (this.birdHeight / 2));
-        ellipse = new Ellipse(position.getX(), position.getY(), this.birdWidth, this.birdHeight);
-        picture = new Picture(ellipse.getX(), ellipse.getY(),"resources/bird_frame0.png");
+        hitbox = new Rectangle(position.getX(), position.getY(), this.birdWidth, this.birdHeight);
+        picture = new Picture(hitbox.getX(), hitbox.getY(),"resources/bird_frame0.png");
 
     }
 
     public void initBird() {
         picture.draw();
+
+    }
+    public Rectangle getHitbox(){
+        return hitbox;
 
     }
 
@@ -64,7 +68,7 @@ public class Bird {
         if (position.getY() + 50 < GridPosition.height) {
             this.position.setY(yInit + 2);
             picture.translate(0, this.position.getY() - yInit);
-            ellipse.translate(0, this.position.getY() - yInit);
+            hitbox.translate(0, this.position.getY() - yInit);
 
         }
 
@@ -97,7 +101,7 @@ public class Bird {
             if (position.getY() > 0) {
                 int yInit = position.getY();
                 this.position.setY(yInit - 8);
-                ellipse.translate(0, this.position.getY() - yInit);
+                hitbox.translate(0, this.position.getY() - yInit);
                 picture.translate(0, this.position.getY() - yInit);
 
             }
