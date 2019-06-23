@@ -3,6 +3,7 @@ package org.academiadecodigo.codezillas.flappy_bird.Position;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class GridPosition {
+
     private int xPos;
     private int yPos;
     private int obstacleX1;
@@ -72,4 +73,3 @@ public class GridPosition {
         return width;
     }
 }
-

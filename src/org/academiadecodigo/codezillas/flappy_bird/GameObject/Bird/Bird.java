@@ -1,4 +1,4 @@
-package org.academiadecodigo.codezillas.flappy_bird.Bird;
+package org.academiadecodigo.codezillas.flappy_bird.GameObject.Bird;
 
 import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
 import org.academiadecodigo.codezillas.flappy_bird.Position.Position;
@@ -29,15 +29,31 @@ public class Bird {
         this.birdHeight = birdHeight;
         position = new Position(50, (720 / 2) - (this.birdHeight / 2));
         hitbox = new Rectangle(position.getX(), position.getY(), this.birdWidth, this.birdHeight);
-        picture = new Picture(hitbox.getX(), hitbox.getY(),"resources/bird_frame0.png");
+        picture = new Picture(hitbox.getX(), hitbox.getY(), "resources/bird_frame0.png");
 
     }
 
     public void initBird() {
         picture.draw();
+        BirdHandler birdHandler = new BirdHandler();
+        KeyboardEvent spacePress = new KeyboardEvent();
+        KeyboardEvent spaceRelease = new KeyboardEvent();
 
+        birdHandler.setBird(this);
+
+        spacePress.setKey(KeyboardEvent.KEY_SPACE);
+        spacePress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+
+        spaceRelease.setKey(KeyboardEvent.KEY_SPACE);
+        spaceRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+
+        Keyboard k = new Keyboard(birdHandler);
+
+        k.addEventListener(spacePress);
+        k.addEventListener(spaceRelease);
     }
-    public Rectangle getHitbox(){
+
+    public Rectangle getHitbox() {
         return hitbox;
 
     }
@@ -59,13 +75,11 @@ public class Bird {
     }
 
 
-
-
     public void fall() {
 
         int yInit = position.getY();
 
-        if (position.getY() + 50 < GridPosition.height) {
+        if (position.getY() + 200 < GridPosition.height) {
             this.position.setY(yInit + 2);
             picture.translate(0, this.position.getY() - yInit);
             hitbox.translate(0, this.position.getY() - yInit);
@@ -77,26 +91,8 @@ public class Bird {
 
     public void jump() {
 
-
-        BirdHandler birdHandler = new BirdHandler();
-        KeyboardEvent spacePress = new KeyboardEvent();
-        KeyboardEvent spaceRelease = new KeyboardEvent();
-
-        birdHandler.setBird(this);
-
-        spacePress.setKey(KeyboardEvent.KEY_SPACE);
-        spacePress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-
-        spaceRelease.setKey(KeyboardEvent.KEY_SPACE);
-        spaceRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
-
-        Keyboard k = new Keyboard(birdHandler);
-
-        k.addEventListener(spacePress);
-        k.addEventListener(spaceRelease);
-
         if (timerStarted) {
-            picture.load("resources/bird_frame0.png");
+            picture.load("resources/img/BirdUp.png");
             timer += 0.1;
             if (position.getY() > 0) {
                 int yInit = position.getY();
@@ -107,14 +103,15 @@ public class Bird {
             }
 
             if (timer > TIMER_MAX) {
-                picture.load("resources/bird_frame1.png");
+                picture.load("resources/img/BirdDown.png");
                 timerStarted = false;
                 timer = 0;
             }
         }
 
-
     }
+
 }
+
 
 

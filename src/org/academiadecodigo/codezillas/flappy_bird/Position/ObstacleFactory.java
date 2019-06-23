@@ -1,10 +1,7 @@
 package org.academiadecodigo.codezillas.flappy_bird.Position;
 
-import org.academiadecodigo.codezillas.flappy_bird.Element.Obstacle;
-import org.academiadecodigo.codezillas.flappy_bird.Element.ObstacleType;
-import org.academiadecodigo.codezillas.flappy_bird.Element.DoubleObstacle;
-import org.academiadecodigo.codezillas.flappy_bird.Element.SingleTopObstacle;
-import org.academiadecodigo.codezillas.flappy_bird.Element.SingleBottomObstacle;
+
+import org.academiadecodigo.codezillas.flappy_bird.GameObject.Obstacle.*;
 
 public class ObstacleFactory {
 

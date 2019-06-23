@@ -1,4 +1,5 @@
-package org.academiadecodigo.codezillas.flappy_bird;
+package org.academiadecodigo.codezillas.flappy_bird.Game;
+
 
 
 import javax.sound.sampled.*;

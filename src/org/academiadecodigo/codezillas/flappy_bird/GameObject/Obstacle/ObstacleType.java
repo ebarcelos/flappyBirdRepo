@@ -1,5 +1,4 @@
-package org.academiadecodigo.codezillas.flappy_bird.Element;
-
+package org.academiadecodigo.codezillas.flappy_bird.GameObject.Obstacle;
 
 public enum ObstacleType {
 

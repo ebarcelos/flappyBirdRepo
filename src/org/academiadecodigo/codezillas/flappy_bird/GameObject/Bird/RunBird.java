@@ -1,14 +1,16 @@
-package org.academiadecodigo.codezillas.flappy_bird.Bird;
+package org.academiadecodigo.codezillas.flappy_bird.GameObject.Bird;
 
 import java.awt.*;
 
 public class RunBird extends Thread {
 
-    Bird bird = new Bird(50, 50);
+    private Bird bird;
 
     @Override
     public void run() {
+        Bird bird = new Bird(150, 150);
         bird.initBird();
+        this.bird = bird;
 
         try {
             while (true) {
@@ -16,7 +18,7 @@ public class RunBird extends Thread {
                 Thread.sleep(5);
                 bird.jump();
                 bird.fall();
-                bird.initBird();
+                //bird.initBird();
             }
         } catch (InterruptedException e) {
             System.out.println("deu merda");
@@ -26,7 +28,6 @@ public class RunBird extends Thread {
     public Rectangle birdHitbox(){
         return bird.getHitbox();
     }
-
 
 
 }
