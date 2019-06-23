@@ -1,11 +1,12 @@
 package org.academiadecodigo.codezillas.flappy_bird.Element;
 
-import org.academiadecodigo.codezillas.flappy_bird.Position.Position;
+public interface Obstacle {
 
-public class Obstacle {
-    private Position pos;
+    void moveObstacle();
 
-    public Obstacle(Position pos){
-        this.pos = pos;
-    }
+    void init();
+
+    boolean hasPassedBird();
+
+    boolean hasPassedMiddle();
 }
