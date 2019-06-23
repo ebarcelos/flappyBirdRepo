@@ -1,87 +1,85 @@
 package org.academiadecodigo.codezillas.flappy_bird;
 
 
-import javax.sound.sampled.*;
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
 
+public class Sound implements Runnable {
+    private boolean running = false;
+    private Thread thread;
 
-// SOM PRECISA DE BARRA ANTES DE RESOURCES, AS IMAGENS NÃO.
+    public Sound() {
+        this.start();
+    }
 
-public class Sound {
+    public void start()
+    {
+        if(running)
+            return;
+        this.thread = new Thread(this);
+        this.running = true;
+        this.thread.start();
+    }
 
+    //
+    private boolean playSong = false;
+    private AudioInputStream inputStream;
+    private String url;
     private Clip clip;
-    private URL soundURL;
 
-    public Sound(String path) {
-
-        initClip(path);
-    }
-
-    public void play() {
-
-        clip.start();
-    }
-
-    public void stop() {
-
-        clip.stop();
-    }
-
-    public void close() {
-
-        clip.close();
-    }
-
-    public void setLoop(int times) {
-        clip.loop(times);
-    }
-
-    public void reOpen() {
-
-        AudioInputStream inputStream = null;
-
-        try {
-
-            inputStream = AudioSystem.getAudioInputStream(soundURL);
-            clip.open(inputStream);
-
-        } catch (LineUnavailableException ex) {
-            System.out.println(ex.getMessage());
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        } catch (UnsupportedAudioFileException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    private void initClip(String path) {
-
-        soundURL = Sound.class.getResource(path); //if loading from jar
-        AudioInputStream inputStream = null;
-
-        try {
-
-            if (soundURL == null) {
-                path = path.substring(1);
-                File file = new File(path);
-                soundURL = file.toURI().toURL(); //if executing on intellij
+    @Override
+    public void run()
+    {
+        while(running)
+        {
+            if(inputStream == null && playSong)
+            {
+                this.playSong = false;
+                try
+                {
+                    this.inputStream = AudioSystem.getAudioInputStream(Sound.class.getResource(url));
+                    this.clip.open(inputStream);
+                    this.clip.loop(10);
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                }
             }
-
-            inputStream = AudioSystem.getAudioInputStream(soundURL);
-            clip = AudioSystem.getClip();
-            clip.open(inputStream);
-
-        } catch (MalformedURLException ex) {
-            System.out.println(ex.getMessage());
-        } catch (UnsupportedAudioFileException ex) {
-            System.out.println(ex.getMessage());
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        } catch (LineUnavailableException ex) {
-            System.out.println(ex.getMessage());
         }
+    }
+
+    public void playBackGround(String string) // call to play .wav file
+    {
+        if(this.clip != null)
+        {
+            this.clip.stop();
+            this.clip.close();
+        }
+        try
+        {
+            this.clip = AudioSystem.getClip();
+        }
+        catch(LineUnavailableException e)
+        {
+            e.printStackTrace();
+        }
+        url = string + ".wav";
+        this.playSong = true;
+        this.inputStream = null;
+    }
+
+    public void disposeSound()
+    {
+        if(this.clip != null)
+        {
+            this.clip.stop();
+            this.clip.close();
+        }
+        this.clip = null;
+        this.playSong = false;
+        this.inputStream = null;
     }
 }

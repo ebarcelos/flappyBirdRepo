@@ -2,6 +2,7 @@ package org.academiadecodigo.codezillas.flappy_bird.Bird;
 
 import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
 import org.academiadecodigo.codezillas.flappy_bird.Position.Position;
+import org.academiadecodigo.codezillas.flappy_bird.Sound2;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Ellipse;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
@@ -70,7 +71,6 @@ public class Bird {
 
     public void jump() {
 
-
         BirdHandler birdHandler = new BirdHandler();
         KeyboardEvent spacePress = new KeyboardEvent();
         KeyboardEvent spaceRelease = new KeyboardEvent();
@@ -104,8 +104,8 @@ public class Bird {
                 timerStarted = false;
                 timer = 0;
             }
-        }
 
+        }
 
     }
 }
