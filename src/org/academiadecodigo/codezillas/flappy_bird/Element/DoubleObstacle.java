@@ -39,8 +39,8 @@ public class DoubleObstacle implements Obstacle {
         topRectangle.setColor(Color.GREEN);
         bottomRectangle.setColor(Color.YELLOW);
 
-        topRectangle.fill();
-        bottomRectangle.fill();
+        topRectangle.draw();
+        bottomRectangle.draw();
 
         topPicture.draw();
         bottomPicture.draw();
@@ -50,8 +50,13 @@ public class DoubleObstacle implements Obstacle {
     public void moveObstacle() {
         int initX = position.getX();
         position.setX(position.getX() - 1);
+
         topRectangle.translate(position.getX() - initX, 0);
         bottomRectangle.translate(position.getX() - initX, 0);
+
+        topPicture.translate(position.getX() - initX, 0);
+        bottomPicture.translate(position.getX() - initX, 0);
+
         checkFinalPosition();
     }
 

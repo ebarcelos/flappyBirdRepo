@@ -11,8 +11,8 @@ public class SingleTopObstacle implements Obstacle {
     private Rectangle topRectangle;
     private Picture picture;
     private boolean passedBird;
-    private int obstWidth = 100;
-    private int obstHeight = 460;
+    private int obstWidth;
+    private int obstHeight;
 
     public SingleTopObstacle(int width, int height, ObstacleType type) {
         this.obstWidth = width;
@@ -22,11 +22,12 @@ public class SingleTopObstacle implements Obstacle {
         topRectangle = new Rectangle(position.getX(), 0, obstWidth, obstHeight);
 
         picture = new Picture(topRectangle.getX(), topRectangle.getY(), type.getPath());
+        picture.grow(topRectangle.getWidth() - picture.getWidth(), topRectangle.getHeight() - picture.getHeight());
     }
 
     public void init() {
         topRectangle.setColor(Color.GREEN);
-        topRectangle.fill();
+        topRectangle.draw();
         picture.draw();
     }
 
@@ -35,6 +36,9 @@ public class SingleTopObstacle implements Obstacle {
         int initX = position.getX();
         position.setX(position.getX() - 1);
         topRectangle.translate(position.getX() - initX, 0);
+
+        picture.translate(position.getX() - initX, 0);
+
         checkFinalPosition();
     }
 
