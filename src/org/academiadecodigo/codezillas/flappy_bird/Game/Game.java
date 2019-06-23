@@ -6,7 +6,8 @@ import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
 
 public class Game {
     private Background background;
-    private RunBird bird;
+    //private RunBird bird;
+    private Thread birdie;
 
     public void init(){
         GridPosition grid = new GridPosition(1280, 720);
@@ -15,10 +16,12 @@ public class Game {
         this.background = new Background();
         background.initBackground();
 
-        this.bird = new RunBird();
+        //this.bird = new RunBird();
+        this.birdie = new Thread(new RunBird());
 
-        bird.run();
+        birdie.start();
 
+        this.start();
     }
 
     public void start(){

@@ -7,16 +7,17 @@ public class RunBird implements Runnable {
         Bird bird = new Bird();
         bird.initBird();
 
-        try {
-            while (true) {
+        while (true) {
+            bird.jump();
+            bird.fall();
 
+            try {
                 Thread.sleep(5);
-                bird.jump();
-                bird.fall();
-
+                bird.initBird();
+            } catch (InterruptedException e) {
+                System.out.println("deu merda");
             }
-        } catch (InterruptedException e) {
-            System.out.println("deu merda");
         }
     }
+
 }
