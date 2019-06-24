@@ -1,9 +1,9 @@
 package org.academiadecodigo.codezillas.flappy_bird.GameObject.Obstacle;
 
 import org.academiadecodigo.codezillas.flappy_bird.Position.Position;
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-
-import java.awt.*;
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class SingleBottomObstacle implements Obstacle {
 
@@ -22,13 +22,14 @@ public class SingleBottomObstacle implements Obstacle {
         position = new Position(Position.width, Position.height-obstHeight);
         hitbox = new Rectangle(position.getX(), position.getY(), obstWidth, obstHeight);
 
-        picture = new Picture(hitbox.getX(), hitbox.getY(), type.getPath());
+//        picture = new Picture(hitbox.getX(), hitbox.getY(), type.getPath());
 //        picture.grow(hitbox.getWidth() - picture.getWidth(), hitbox.getHeight() - picture.getHeight());
     }
 
     public void init() {
-
-        picture.draw();
+        hitbox.setColor(Color.RED);
+        hitbox.fill();
+//        picture.draw();
     }
 
     @Override
@@ -37,7 +38,7 @@ public class SingleBottomObstacle implements Obstacle {
         position.setX(position.getX() - 1);
 
         hitbox.translate(position.getX() - initX, 0);
-        picture.translate(position.getX() - initX, 0);
+//        picture.translate(position.getX() - initX, 0);
 
         checkFinalPosition();
         checkMiddlePosition();
@@ -62,9 +63,7 @@ public class SingleBottomObstacle implements Obstacle {
     public boolean checkCollision(Rectangle birdHitbox) {
 
         if (hitbox.intersects(birdHitbox)) {
-            System.out.println("yes");
             return true;
-
         }
         return false;
 

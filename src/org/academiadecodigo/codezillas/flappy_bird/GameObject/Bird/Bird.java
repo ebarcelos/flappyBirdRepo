@@ -2,15 +2,16 @@ package org.academiadecodigo.codezillas.flappy_bird.GameObject.Bird;
 
 import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
 import org.academiadecodigo.codezillas.flappy_bird.Position.Position;
-import org.academiadecodigo.simplegraphics.graphics.Ellipse;
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
+
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
-import java.awt.*;
-
-public class Bird {
+public class Bird implements KeyboardHandler {
 
     private Position position;
     private Rectangle hitbox;
@@ -29,18 +30,16 @@ public class Bird {
         this.birdHeight = birdHeight;
         position = new Position(100, (720 / 2) - (this.birdHeight / 2));
         hitbox = new Rectangle(position.getX(), position.getY(), this.birdWidth, this.birdHeight);
-        picture = new Picture(hitbox.getX(), hitbox.getY(), "resources/img/BirdDown.png");
-        picture.grow(-24,-11);
-
+//        picture = new Picture(hitbox.getX(), hitbox.getY(), "resources/img/BirdDown.png");
+//        picture.grow(-24,-11);
     }
 
     public void initBird() {
-        picture.draw();
-        BirdHandler birdHandler = new BirdHandler();
+        hitbox.setColor(Color.BLACK);
+        hitbox.fill();
+//        picture.draw();
         KeyboardEvent spacePress = new KeyboardEvent();
         KeyboardEvent spaceRelease = new KeyboardEvent();
-
-        birdHandler.setBird(this);
 
         spacePress.setKey(KeyboardEvent.KEY_SPACE);
         spacePress.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
@@ -48,15 +47,27 @@ public class Bird {
         spaceRelease.setKey(KeyboardEvent.KEY_SPACE);
         spaceRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
 
-        Keyboard k = new Keyboard(birdHandler);
+        Keyboard k = new Keyboard(this);
 
         k.addEventListener(spacePress);
         k.addEventListener(spaceRelease);
     }
 
+    public void keyPressed(KeyboardEvent var1) {
+
+        if (!isJumping()) {
+            startTimer();
+            setJumptrue();
+            initBird();
+        }
+    }
+
+    public void keyReleased(KeyboardEvent var1) {
+        setJumpfalse();
+    }
+
     public Rectangle getHitbox() {
         return hitbox;
-
     }
 
     public void setJumpfalse() {
@@ -82,11 +93,9 @@ public class Bird {
 
         if (position.getY() + 200 < GridPosition.height) {
             this.position.setY(yInit + 2);
-            picture.translate(0, this.position.getY() - yInit);
+//            picture.translate(0, this.position.getY() - yInit);
             hitbox.translate(0, this.position.getY() - yInit);
-
         }
-
     }
 
 
@@ -97,10 +106,9 @@ public class Bird {
             timer += 0.1;
             if (position.getY() > 0) {
                 int yInit = position.getY();
-                this.position.setY(yInit - 5);
-                hitbox.translate(0, this.position.getY() - yInit);
-                picture.translate(0, this.position.getY() - yInit);
-
+                position.setY(yInit - 5);
+                hitbox.translate(0, position.getY() - yInit);
+ //               picture.translate(0, this.position.getY() - yInit);
             }
 
             if (timer > TIMER_MAX) {

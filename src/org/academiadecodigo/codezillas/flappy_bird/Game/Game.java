@@ -43,9 +43,9 @@ import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
     private void gameplay () {
         try {
 
-             RunBird runBird = new RunBird();
-             Obstacle obstacle = ObstacleFactory.getNewObstacle();
-             Obstacle obstacleTwo = null;
+            RunBird runBird = new RunBird();
+            Obstacle obstacle = ObstacleFactory.getNewObstacle();
+            Obstacle obstacleTwo = null;
             runBird.start();
             obstacle.init();
 

@@ -1,6 +1,6 @@
 package org.academiadecodigo.codezillas.flappy_bird.GameObject.Bird;
 
-import java.awt.*;
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class RunBird extends Thread {
 
@@ -8,9 +8,8 @@ public class RunBird extends Thread {
 
     @Override
     public void run() {
-        Bird bird = new Bird(150, 129);
+        bird = new Bird(150, 129);
         bird.initBird();
-        this.bird = bird;
 
         try {
             while (true) {

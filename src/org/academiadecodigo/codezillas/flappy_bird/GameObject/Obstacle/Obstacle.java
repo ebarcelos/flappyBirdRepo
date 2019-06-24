@@ -1,8 +1,7 @@
 package org.academiadecodigo.codezillas.flappy_bird.GameObject.Obstacle;
 
 import org.academiadecodigo.codezillas.flappy_bird.GameObject.GameObject;
-
-import java.awt.*;
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public interface Obstacle extends GameObject {
 

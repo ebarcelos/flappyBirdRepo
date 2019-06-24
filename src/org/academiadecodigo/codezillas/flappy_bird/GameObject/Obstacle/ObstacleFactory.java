@@ -7,7 +7,6 @@ public class ObstacleFactory {
     public static Obstacle getNewObstacle() {
 
         int random = (int) (Math.random() * 100);
-        System.out.println(random);
 
         if (random < PIPE_CHANCES) {
             System.out.println("boas");
@@ -29,7 +28,6 @@ public class ObstacleFactory {
 
     private static Obstacle singleBottomObstacle() {
         int randSingle = (int) (Math.floor(Math.random() * 5));
-        System.out.println("single" + randSingle);
         switch (randSingle) {
             case 0:
                 return new SingleBottomObstacle(182, 175, ObstacleType.TIAGUIM);
@@ -46,7 +44,6 @@ public class ObstacleFactory {
 
     private static Obstacle doubleObstacle() {
         int randSingle = (int) (Math.floor(Math.random() * 4));
-        System.out.println("double" + randSingle);
 
         switch (randSingle) {
             case 0:

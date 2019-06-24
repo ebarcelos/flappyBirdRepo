@@ -28,10 +28,6 @@ public class GridPosition {
         canvas.draw();
     }
 
-    public void goUp() {
-        this.yPos -= 10;
-    }
-
     public int getX() {
         return xPos;
     }
@@ -44,29 +40,8 @@ public class GridPosition {
         this.xPos = xValue;
     }
 
-    //*
-    public void setObstacleX1(int obstacleX1) {
-        this.obstacleX1 = obstacleX1;
-    }
-
-    public void setObstacleY1(int obstacleY1) {
-        this.obstacleY1 = obstacleY1;
-    }
-
-    public void setObstacleX2(int obstacleX2) {
-        this.obstacleX2 = obstacleX2;
-    }
-
-    public void setObstacleY2(int obstacleY2) {
-        this.obstacleY2 = obstacleY2;
-    }
-
     public void setY(int yValue) {
         this.yPos = yValue;
-    }
-
-    public int getHeight() {
-        return height;
     }
 
     public int getWidth() {
