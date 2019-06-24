@@ -1,7 +1,5 @@
 package org.academiadecodigo.codezillas.flappy_bird.GameObject.Obstacle;
 
-
-
 import org.academiadecodigo.codezillas.flappy_bird.Position.Position;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -15,11 +13,12 @@ public class DoubleObstacle implements Obstacle {
     private Picture topPicture;
     private Picture bottomPicture;
     private boolean passedBird;
-    private int obstWidth = 100;
-    private int obstHeight = 460;
-    private int opening = 200;
-    private int minTopHeight = 60;
-    private int range = 400;
+    private boolean middlePosition;
+    private int obstWidth = 134;
+    private int obstHeight = 564;
+    private int opening = 250;
+    private int minTopHeight = 30;
+    private int range = 410;
 
     public DoubleObstacle(ObstacleType topType, ObstacleType bottomType) {
         int genTopRectPos = genTopRectPos();
@@ -38,12 +37,6 @@ public class DoubleObstacle implements Obstacle {
     }
 
     public void init() {
-        //topHitbox.setColor(Color.GREEN);
-        //bottomHitbox.setColor(Color.YELLOW);
-
-        //topHitbox.draw();
-        //bottomHitbox.draw();
-
         topPicture.draw();
         bottomPicture.draw();
     }
@@ -60,6 +53,7 @@ public class DoubleObstacle implements Obstacle {
         bottomPicture.translate(position.getX() - initX, 0);
 
         checkFinalPosition();
+        checkMiddlePosition();
     }
 
 
@@ -68,13 +62,18 @@ public class DoubleObstacle implements Obstacle {
         this.passedBird = (this.position.getX() + obstWidth) < 0;
     }
 
+    private void checkMiddlePosition () {
+        this.middlePosition = position.getX() < (position.getWidth()/2);
+    }
+
+    public boolean hasPassedMiddle() {
+        return middlePosition;
+    }
+
     public boolean hasPassedBird () {
         return passedBird;
     }
 
-    public boolean hasPassedMiddle() {
-        return position.getX() < (position.getWidth()/2);
-    }
 
     public boolean checkCollision(Rectangle birdHitbox){
 
@@ -85,4 +84,5 @@ public class DoubleObstacle implements Obstacle {
         return false;
 
     }
+
 }

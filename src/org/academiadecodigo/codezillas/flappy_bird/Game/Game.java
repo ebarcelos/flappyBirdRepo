@@ -2,45 +2,107 @@
 
 import org.academiadecodigo.codezillas.flappy_bird.GameObject.Background;
 import org.academiadecodigo.codezillas.flappy_bird.GameObject.Bird.*;
-import org.academiadecodigo.codezillas.flappy_bird.GameObject.GameObject;
 import org.academiadecodigo.codezillas.flappy_bird.GameObject.Obstacle.Obstacle;
+import org.academiadecodigo.codezillas.flappy_bird.GameObject.PointCounter.ObstacleCounter;
 import org.academiadecodigo.codezillas.flappy_bird.GameObject.Obstacle.ObstacleFactory;
-import org.academiadecodigo.codezillas.flappy_bird.Main;
+import org.academiadecodigo.codezillas.flappy_bird.Menu.GameOver;
+import org.academiadecodigo.codezillas.flappy_bird.Menu.Menu;
 import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
 
-public class Game {
+ public class Game {
 
-    public void init() {
+     boolean firstRun = false;
+     private Background background;
+
+
+     public void init() {
+
+
         GridPosition grid = new GridPosition(1280, 720);
         grid.init();
 
-        Background background = new Background();
-        background.initBackground();
-
         Sound music = new Sound("/resources/sound/music/colhao_colhao80kbps.wav");
-        music.play();
+        music.setLoop(5);
 
-        GameObject x = ObstacleFactory.getNewObstacle();
-        x = (Obstacle) x;
-        x.init();
-
-        RunBird runBird = new RunBird();
-        runBird.start();
+        background = new Background();
+        background.initBackground();
 
         Menu menu = new Menu();
         menu.initMenu();
+
+        while(!menu.hasFinished()){
+
+             System.out.println(menu.hasFinished());
+
+        }
+
+        gameplay();
+
+    }
+
+    private void gameplay () {
         try {
+
+             RunBird runBird = new RunBird();
+             Obstacle obstacle = ObstacleFactory.getNewObstacle();
+             Obstacle obstacleTwo = null;
+            runBird.start();
+            obstacle.init();
+
+            ObstacleCounter.growSize();
+            ObstacleCounter.showCounter();
+
+
             while (true) {
 
-                Thread.sleep(15);
-                x.moveObstacle();
+                Thread.sleep(5);
+
                 background.scroll();
-                x.moveObstacle();
-                ((Obstacle) x).checkCollision(runBird.birdHitbox());
+                obstacle.moveObstacle();
+
+                if (obstacle.hasPassedMiddle() && !firstRun) {
+                    obstacleTwo = ObstacleFactory.getNewObstacle();
+                    obstacleTwo.init();
+                    firstRun = true;
+                }
+                if (firstRun) {
+                    obstacleTwo.moveObstacle();
+                }
+
+                if (obstacle.hasPassedBird()) {
+                    ObstacleCounter.addCounter();
+                    obstacle = ObstacleFactory.getNewObstacle();
+                    obstacle.init();
+                }
+
+                if (firstRun && obstacleTwo.hasPassedBird()) {
+                    ObstacleCounter.addCounter();
+                    obstacleTwo = ObstacleFactory.getNewObstacle();
+                    obstacleTwo.init();
+                }
+
+                ObstacleCounter.showCounter();
+
+                if (obstacle.checkCollision(runBird.birdHitbox())) {
+
+                    GameOver gameOver = new GameOver();
+                    Sound sound = new Sound("/resources/sound/effects/dieballs.wav");
+                    sound.play();
+
+                    while(true){
+                        gameOver.draw();
+                        return;
+
+                    }
+
+                }
+
 
             }
         } catch (InterruptedException e) {
-            System.out.println("deu merda");
-        }
-    }
+         System.out.println("deu merda");
+     }
+
+
+ }
 }

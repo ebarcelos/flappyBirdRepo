@@ -16,4 +16,5 @@ public interface Obstacle extends GameObject {
 
     boolean checkCollision(Rectangle target);
 
+
 }

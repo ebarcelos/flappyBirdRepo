@@ -11,6 +11,7 @@ public class SingleBottomObstacle implements Obstacle {
     private Rectangle hitbox;
     private Picture picture;
     private boolean passedBird;
+    private boolean middlePosition;
     private int obstWidth;
     private int obstHeight;
 
@@ -18,20 +19,16 @@ public class SingleBottomObstacle implements Obstacle {
         this.obstWidth = width;
         this.obstHeight = height;
 
-        position = new Position(Position.width, Position.height);
-        hitbox = new Rectangle(position.getX(), position.getY() - obstHeight, obstWidth, obstHeight);
+        position = new Position(Position.width, Position.height-obstHeight);
+        hitbox = new Rectangle(position.getX(), position.getY(), obstWidth, obstHeight);
 
         picture = new Picture(hitbox.getX(), hitbox.getY(), type.getPath());
-        picture.grow(hitbox.getWidth() - picture.getWidth(), hitbox.getHeight() - picture.getHeight());
+//        picture.grow(hitbox.getWidth() - picture.getWidth(), hitbox.getHeight() - picture.getHeight());
     }
 
     public void init() {
 
         picture.draw();
-    }
-
-    public Rectangle getHitbox() {
-        return hitbox;
     }
 
     @Override
@@ -40,9 +37,10 @@ public class SingleBottomObstacle implements Obstacle {
         position.setX(position.getX() - 1);
 
         hitbox.translate(position.getX() - initX, 0);
-
         picture.translate(position.getX() - initX, 0);
+
         checkFinalPosition();
+        checkMiddlePosition();
     }
 
     private void checkFinalPosition() {
@@ -53,8 +51,12 @@ public class SingleBottomObstacle implements Obstacle {
         return passedBird;
     }
 
+    private void checkMiddlePosition () {
+        this.middlePosition = position.getX() < (position.getWidth()/2);
+    }
+
     public boolean hasPassedMiddle() {
-        return position.getX() < (position.getWidth() / 2);
+        return middlePosition;
     }
 
     public boolean checkCollision(Rectangle birdHitbox) {
@@ -67,4 +69,6 @@ public class SingleBottomObstacle implements Obstacle {
         return false;
 
     }
+
+
 }

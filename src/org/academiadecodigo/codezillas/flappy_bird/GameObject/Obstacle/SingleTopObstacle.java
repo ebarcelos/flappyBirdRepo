@@ -12,6 +12,7 @@ public class SingleTopObstacle implements Obstacle {
     private Rectangle hitbox;
     private Picture picture;
     private boolean passedBird;
+    private boolean middlePosition;
     private int obstWidth;
     private int obstHeight;
 
@@ -23,7 +24,7 @@ public class SingleTopObstacle implements Obstacle {
         hitbox = new Rectangle(position.getX(), 0, obstWidth, obstHeight);
 
         picture = new Picture(hitbox.getX(), hitbox.getY(), type.getPath());
-        picture.grow(hitbox.getWidth() - picture.getWidth(), hitbox.getHeight() - picture.getHeight());
+//        picture.grow(hitbox.getWidth() - picture.getWidth(), hitbox.getHeight() - picture.getHeight());
     }
 
     public void init() {
@@ -43,6 +44,7 @@ public class SingleTopObstacle implements Obstacle {
         picture.translate(position.getX() - initX, 0);
 
         checkFinalPosition();
+        checkMiddlePosition();
     }
 
     private void checkFinalPosition () {
@@ -53,8 +55,12 @@ public class SingleTopObstacle implements Obstacle {
         return passedBird;
     }
 
+    private void checkMiddlePosition () {
+        this.middlePosition = position.getX() < (position.getWidth()/2);
+    }
+
     public boolean hasPassedMiddle() {
-        return position.getX() < (position.getWidth()/2);
+        return middlePosition;
     }
 
     public boolean checkCollision(Rectangle birdHitbox){
@@ -67,4 +73,5 @@ public class SingleTopObstacle implements Obstacle {
         return false;
 
     }
+
 }

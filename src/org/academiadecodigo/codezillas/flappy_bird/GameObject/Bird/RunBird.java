@@ -8,7 +8,7 @@ public class RunBird extends Thread {
 
     @Override
     public void run() {
-        Bird bird = new Bird(150, 150);
+        Bird bird = new Bird(150, 129);
         bird.initBird();
         this.bird = bird;
 
@@ -18,7 +18,7 @@ public class RunBird extends Thread {
                 Thread.sleep(5);
                 bird.jump();
                 bird.fall();
-                //bird.initBird();
+
             }
         } catch (InterruptedException e) {
             System.out.println("deu merda");

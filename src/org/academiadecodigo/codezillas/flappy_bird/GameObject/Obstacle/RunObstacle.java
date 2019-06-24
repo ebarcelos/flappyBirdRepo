@@ -1,7 +1,5 @@
 package org.academiadecodigo.codezillas.flappy_bird.GameObject.Obstacle;
 
-import org.academiadecodigo.codezillas.flappy_bird.Position.ObstacleFactory;
-
 import java.awt.*;
 
 public class RunObstacle extends Thread {

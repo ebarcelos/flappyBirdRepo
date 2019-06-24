@@ -19,7 +19,7 @@ public class Bird {
     private int birdHeight;
 
     private double timer;
-    private static final double TIMER_MAX = 2;
+    private static final double TIMER_MAX = 3;
 
     private boolean timerStarted;
     private boolean isJumping;
@@ -27,9 +27,10 @@ public class Bird {
     public Bird(int birdWidth, int birdHeight) {
         this.birdWidth = birdWidth;
         this.birdHeight = birdHeight;
-        position = new Position(50, (720 / 2) - (this.birdHeight / 2));
+        position = new Position(100, (720 / 2) - (this.birdHeight / 2));
         hitbox = new Rectangle(position.getX(), position.getY(), this.birdWidth, this.birdHeight);
-        picture = new Picture(hitbox.getX(), hitbox.getY(), "resources/bird_frame0.png");
+        picture = new Picture(hitbox.getX(), hitbox.getY(), "resources/img/BirdDown.png");
+        picture.grow(-24,-11);
 
     }
 
@@ -96,7 +97,7 @@ public class Bird {
             timer += 0.1;
             if (position.getY() > 0) {
                 int yInit = position.getY();
-                this.position.setY(yInit - 8);
+                this.position.setY(yInit - 5);
                 hitbox.translate(0, this.position.getY() - yInit);
                 picture.translate(0, this.position.getY() - yInit);
 
