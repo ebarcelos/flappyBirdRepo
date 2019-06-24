@@ -9,7 +9,6 @@ public class ObstacleFactory {
         int random = (int) (Math.random() * 100);
 
         if (random < PIPE_CHANCES) {
-            System.out.println("boas");
             return doubleObstacle();
         } else {
 

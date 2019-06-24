@@ -15,7 +15,7 @@ public class Bird implements KeyboardHandler {
 
     private Position position;
     private Rectangle hitbox;
-    private Picture picture;
+//    private Picture picture;
     private int birdWidth;
     private int birdHeight;
 
@@ -102,7 +102,7 @@ public class Bird implements KeyboardHandler {
     public void jump() {
 
         if (timerStarted) {
-            picture.load("resources/img/BirdUp.png");
+//            picture.load("resources/img/BirdUp.png");
             timer += 0.1;
             if (position.getY() > 0) {
                 int yInit = position.getY();
@@ -112,7 +112,7 @@ public class Bird implements KeyboardHandler {
             }
 
             if (timer > TIMER_MAX) {
-                picture.load("resources/img/BirdDown.png");
+//                picture.load("resources/img/BirdDown.png");
                 timerStarted = false;
                 timer = 0;
             }

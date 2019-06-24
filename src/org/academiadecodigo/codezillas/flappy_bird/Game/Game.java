@@ -13,7 +13,8 @@ import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
 
      boolean firstRun = false;
      private Background background;
-
+     private RunBird runBird;
+     private
 
      public void init() {
 
@@ -31,9 +32,7 @@ import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
         menu.initMenu();
 
         while(!menu.hasFinished()){
-
              System.out.println(menu.hasFinished());
-
         }
 
         gameplay();
@@ -42,8 +41,7 @@ import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
 
     private void gameplay () {
         try {
-
-            RunBird runBird = new RunBird();
+            runBird = new RunBird();
             Obstacle obstacle = ObstacleFactory.getNewObstacle();
             Obstacle obstacleTwo = null;
             runBird.start();

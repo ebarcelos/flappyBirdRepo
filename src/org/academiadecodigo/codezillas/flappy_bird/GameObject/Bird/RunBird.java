@@ -6,10 +6,13 @@ public class RunBird extends Thread {
 
     private Bird bird;
 
-    @Override
-    public void run() {
+    public RunBird () {
         bird = new Bird(150, 129);
         bird.initBird();
+    }
+
+    @Override
+    public void run () {
 
         try {
             while (true) {
