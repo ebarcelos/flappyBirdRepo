@@ -11,7 +11,7 @@ public class SingleTopObstacle implements Obstacle {
     private Rectangle hitbox;
     private Picture picture;
     private boolean passedBird;
-    private boolean middlePosition;
+    private boolean genObstacle;
     private int obstWidth;
     private int obstHeight;
 
@@ -43,7 +43,6 @@ public class SingleTopObstacle implements Obstacle {
 //        picture.translate(position.getX() - initX, 0);
 
         checkFinalPosition();
-        checkMiddlePosition();
     }
 
     private void checkFinalPosition () {
@@ -54,21 +53,20 @@ public class SingleTopObstacle implements Obstacle {
         return passedBird;
     }
 
-    private void checkMiddlePosition () {
-        this.middlePosition = position.getX() < (position.getWidth()/2);
+    public Position getPosition() {
+        return position;
     }
 
-    public boolean hasPassedMiddle() {
-        return middlePosition;
+    public void genObstacle () {
+        genObstacle = true;
+    }
+
+    public boolean hasGenObstacle () {
+        return genObstacle;
     }
 
     public boolean checkCollision(Rectangle birdHitbox){
-
-        if(hitbox.intersects(birdHitbox)){
-            return true;
-        }
-        return false;
-
+        return hitbox.intersects(birdHitbox);
     }
 
 }

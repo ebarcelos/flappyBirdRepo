@@ -8,6 +8,4 @@ public interface GameObject {
 
     boolean hasPassedBird();
 
-    boolean hasPassedMiddle();
-
 }

@@ -2,7 +2,7 @@ package org.academiadecodigo.codezillas.flappy_bird.GameObject.Obstacle;
 
 public class ObstacleFactory {
 
-    private static final int PIPE_CHANCES = 90;
+    private static final int PIPE_CHANCES = 100;
 
     public static Obstacle getNewObstacle() {
 

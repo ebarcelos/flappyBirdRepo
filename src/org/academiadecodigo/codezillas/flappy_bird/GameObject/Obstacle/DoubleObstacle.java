@@ -13,10 +13,10 @@ public class DoubleObstacle implements Obstacle {
     private Picture topPicture;
     private Picture bottomPicture;
     private boolean passedBird;
-    private boolean middlePosition;
+    private boolean genObstacle;
     private int obstWidth = 134;
     private int obstHeight = 564;
-    private int opening = 250;
+    private int opening = 350;
     private int minTopHeight = 30;
     private int range = 410;
 
@@ -59,33 +59,30 @@ public class DoubleObstacle implements Obstacle {
 //        bottomPicture.translate(position.getX() - initX, 0);
 
         checkFinalPosition();
-        checkMiddlePosition();
     }
 
     private void checkFinalPosition () {
         this.passedBird = (this.position.getX() + obstWidth) < 0;
     }
 
-    private void checkMiddlePosition () {
-        this.middlePosition = position.getX() < (position.getWidth()/2);
-    }
-
-    public boolean hasPassedMiddle() {
-        return middlePosition;
-    }
-
     public boolean hasPassedBird () {
         return passedBird;
     }
 
+    public Position getPosition() {
+        return position;
+    }
+
+    public void genObstacle () {
+        genObstacle = true;
+    }
+
+    public boolean hasGenObstacle () {
+        return genObstacle;
+    }
 
     public boolean checkCollision(Rectangle birdHitbox){
-
-        if(topHitbox.intersects(birdHitbox) || bottomHitbox.intersects(birdHitbox) ){
-            return true;
-        }
-        return false;
-
+        return topHitbox.intersects(birdHitbox) || bottomHitbox.intersects(birdHitbox);
     }
 
 }

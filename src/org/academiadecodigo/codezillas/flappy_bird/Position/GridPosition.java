@@ -6,10 +6,6 @@ public class GridPosition {
 
     private int xPos;
     private int yPos;
-    private int obstacleX1;
-    private int obstacleY1;
-    private int obstacleX2;
-    private int obstacleY2;
     public static int height;
     public static int width;
     Rectangle canvas;
