@@ -28,7 +28,7 @@ public class RunObstacle extends Thread {
     }
 
     @Override
-    public void run  () {
+    public void run () {
 //        super.run();
         fillNextNull();
         ObstacleCounter.growSize();
