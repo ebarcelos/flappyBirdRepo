@@ -2,8 +2,8 @@ package org.academiadecodigo.codezillas.flappy_bird.GameObject.Obstacle;
 
 import org.academiadecodigo.codezillas.flappy_bird.Position.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class SingleTopObstacle implements Obstacle {
 
@@ -66,7 +66,9 @@ public class SingleTopObstacle implements Obstacle {
     }
 
     public boolean checkCollision(Rectangle birdHitbox){
+
         return hitbox.intersects(birdHitbox);
+
     }
 
 }
