@@ -8,19 +8,19 @@ public class RunObstacle extends Thread {
 
     private Obstacle[] obstacles;
     private Rectangle targetHitbox;
-    private static final int MIN_DIFICULTY = 2;
+    private static final int MIN_DIFICULTY = 1;
     private static final int MAX_DIFICULTY = 4;
-    private static final int OBSTACLE_INCREASE_DELTA = 2;
+    private static final int OBSTACLE_INCREASE_DELTA = 5;
     private int difficultyLevel;
 
     public RunObstacle (Rectangle targetHitbox) {
         this.targetHitbox = targetHitbox;
         difficultyLevel = MIN_DIFICULTY;
 
-        obstacles = new Obstacle[MAX_DIFICULTY];
+        obstacles = new Obstacle[MAX_DIFICULTY + 1];
     }
 
-    public void increaseDificulty() {
+    public void increaseDifficulty() {
         if (this.difficultyLevel < MAX_DIFICULTY) {
             difficultyLevel++;
         }
@@ -28,54 +28,49 @@ public class RunObstacle extends Thread {
 
     @Override
     public void run () {
-//        super.run();
         fillNextNull();
         ObstacleCounter.growSize();
 
- //       try {
-            while (true) {
+        while (true) {
 
-                try {
-                    Thread.sleep(5);
-                } catch (InterruptedException e) {
-                    System.out.println(e.getMessage());
-                }
-
-                for (int i = 0; i < obstacles.length; i++) {
-                    if (obstacles[i] == null) {
-                        continue;
-                    }
-
-                    obstacles[i].moveObstacle();
-
-                    if (obstacles[i].getPosition().getX() + 150 < 0) {
-                        ObstacleCounter.addCounter();
-                        obstacles[i] = null;
-                        continue;
-                    }
-
-                    if (obstacles[i].getPosition().getX() < GridPosition.width - (GridPosition.width / difficultyLevel)) {
-                        if (!obstacles[i].hasGenObstacle()) {
-                            obstacles[i].genObstacle();
-                            fillNextNull();
-                        }
-                    }
-
-                    if (obstacles[i].checkCollision(targetHitbox)) {
-                        return;
-                    }
-
-                    if (ObstacleCounter.getCounter() > (difficultyLevel * OBSTACLE_INCREASE_DELTA)) {
-                        increaseDificulty();
-                    }
-
-                    ObstacleCounter.showCounter();
-                }
+            try {
+                Thread.sleep(5);
+            } catch (InterruptedException e) {
+                System.out.println(e.getMessage());
             }
-//        } catch (InterruptedException e) {
-//            System.out.println(e.getMessage());
-        }
 
+            for (int i = 0; i < obstacles.length; i++) {
+                if (obstacles[i] == null) {
+                    continue;
+                }
+
+                obstacles[i].moveObstacle();
+
+                if (obstacles[i].getPosition().getX() + 150 < 0) {
+                    ObstacleCounter.addCounter();
+                    obstacles[i] = null;
+                    continue;
+                }
+
+                if (obstacles[i].getPosition().getX() < GridPosition.width - (GridPosition.width / difficultyLevel)) {
+                    if (!obstacles[i].hasGenObstacle()) {
+                        obstacles[i].genObstacle();
+                        fillNextNull();
+                    }
+                }
+
+                if (obstacles[i].checkCollision(targetHitbox)) {
+                    return;
+                }
+
+                if (ObstacleCounter.getCounter() > (difficultyLevel * OBSTACLE_INCREASE_DELTA)) {
+                    increaseDifficulty();
+                }
+
+                ObstacleCounter.showCounter();
+            }
+        }
+    }
 
     private void fillNextNull() {
         for (int i=0; i<obstacles.length; i++) {

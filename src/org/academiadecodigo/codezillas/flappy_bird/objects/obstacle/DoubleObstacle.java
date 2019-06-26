@@ -16,9 +16,8 @@ public class DoubleObstacle implements Obstacle {
     private boolean genObstacle;
     private int obstWidth = 134;
     private int obstHeight = 564;
-    private int opening = 350;
-    private int minTopHeight = 30;
-    private int range = 410;
+    private int opening = 250;
+    private int minTopHeight = 60;
 
     public DoubleObstacle(ObstacleType topType, ObstacleType bottomType) {
         int genTopRectPos = genTopRectPos();
@@ -32,8 +31,9 @@ public class DoubleObstacle implements Obstacle {
     }
 
     private int genTopRectPos () {
+        int range = Position.height - (2 * minTopHeight) - opening;
         int rand = (int) (Math.random() * range);
-        return -(rand + minTopHeight);
+        return minTopHeight - obstHeight + rand;
     }
 
     public void init() {
