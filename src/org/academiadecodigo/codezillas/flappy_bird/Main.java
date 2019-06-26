@@ -7,6 +7,5 @@ public class Main {
 
         Game engine = new Game();
         engine.init();
-
     }
 }

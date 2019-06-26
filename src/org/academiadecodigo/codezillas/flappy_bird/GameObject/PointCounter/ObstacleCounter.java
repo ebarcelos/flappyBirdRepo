@@ -19,13 +19,12 @@ public class ObstacleCounter {
         return counter;
     }
 
+    public static void restartCounter() {
+        counter = 0;
+    }
+
     public static void showCounter() {
-
         text.draw();
-
         text.setText("SCORE: " + counter);
-
-
-
     }
 }

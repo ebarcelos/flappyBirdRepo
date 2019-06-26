@@ -31,12 +31,16 @@ import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
              System.out.println(menu.hasFinished());
          }
 
+
          while (true) {
 
              background = new Background();
              background.initBackground();
+
              runBird = new RunBird();
              runBird.start();
+
+             ObstacleCounter.restartCounter();
 
              runObstacle = new RunObstacle(runBird.birdHitbox());
              runObstacle.run();
@@ -49,6 +53,8 @@ import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
              while (!gameOver.hasRestartGame()) {
                  System.out.println(gameOver.hasRestartGame());
              }
+
+
          }
      }
 }
