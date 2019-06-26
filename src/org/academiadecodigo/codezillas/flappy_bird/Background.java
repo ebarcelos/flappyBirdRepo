@@ -1,6 +1,6 @@
 package org.academiadecodigo.codezillas.flappy_bird;
 
-import org.academiadecodigo.codezillas.flappy_bird.Position.Position;
+import org.academiadecodigo.codezillas.flappy_bird.position.Position;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Background {
@@ -20,7 +20,6 @@ public class Background {
 
     public void scroll() {
         int xInit = this.position.getX();
-        //System.out.println(position.getX());
         this.position.setX(xInit - 1);
 
         if (position.getX() <= -1280) {

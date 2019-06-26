@@ -1,4 +1,4 @@
-package org.academiadecodigo.codezillas.flappy_bird.Position;
+package org.academiadecodigo.codezillas.flappy_bird.position;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 

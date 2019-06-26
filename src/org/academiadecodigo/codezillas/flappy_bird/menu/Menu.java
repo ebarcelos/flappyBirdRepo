@@ -1,4 +1,4 @@
-package org.academiadecodigo.codezillas.flappy_bird.Menu;
+package org.academiadecodigo.codezillas.flappy_bird.menu;
 
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;

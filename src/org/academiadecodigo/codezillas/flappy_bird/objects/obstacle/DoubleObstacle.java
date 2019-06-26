@@ -1,6 +1,6 @@
-package org.academiadecodigo.codezillas.flappy_bird.GameObject.Obstacle;
+package org.academiadecodigo.codezillas.flappy_bird.objects.obstacle;
 
-import org.academiadecodigo.codezillas.flappy_bird.Position.Position;
+import org.academiadecodigo.codezillas.flappy_bird.position.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;

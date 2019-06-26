@@ -1,4 +1,4 @@
-package org.academiadecodigo.codezillas.flappy_bird.Game;
+package org.academiadecodigo.codezillas.flappy_bird.game;
 
 
 

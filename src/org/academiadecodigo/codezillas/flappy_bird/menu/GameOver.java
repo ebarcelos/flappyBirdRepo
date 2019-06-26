@@ -1,4 +1,4 @@
-package org.academiadecodigo.codezillas.flappy_bird.Menu;
+package org.academiadecodigo.codezillas.flappy_bird.menu;
 
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -35,5 +35,11 @@ public class GameOver implements KeyboardHandler {
         restartGame = true;
     }
 
-    public void keyReleased(KeyboardEvent var1) {}
+    public void keyReleased(KeyboardEvent var1) {
+
+    }
+    public void changeRestart(){
+        restartGame = false;
+    }
+
 }

@@ -1,8 +1,7 @@
-package org.academiadecodigo.codezillas.flappy_bird.GameObject.Obstacle;
+package org.academiadecodigo.codezillas.flappy_bird.objects.obstacle;
 
-import org.academiadecodigo.codezillas.flappy_bird.GameObject.PointCounter.ObstacleCounter;
-import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
-import org.academiadecodigo.codezillas.flappy_bird.Position.Position;
+import org.academiadecodigo.codezillas.flappy_bird.objects.score.ObstacleCounter;
+import org.academiadecodigo.codezillas.flappy_bird.position.GridPosition;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class RunObstacle extends Thread {

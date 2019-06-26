@@ -1,4 +1,4 @@
-package org.academiadecodigo.codezillas.flappy_bird.GameObject.Bird;
+package org.academiadecodigo.codezillas.flappy_bird.objects.bird;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
@@ -23,7 +23,7 @@ public class RunBird extends Thread {
 
             }
         } catch (InterruptedException e) {
-            System.out.println("deu merda");
+            System.out.println(e.getMessage());
         }
     }
 

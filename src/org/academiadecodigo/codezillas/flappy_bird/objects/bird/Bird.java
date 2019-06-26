@@ -1,7 +1,7 @@
-package org.academiadecodigo.codezillas.flappy_bird.GameObject.Bird;
+package org.academiadecodigo.codezillas.flappy_bird.objects.bird;
 
-import org.academiadecodigo.codezillas.flappy_bird.Position.GridPosition;
-import org.academiadecodigo.codezillas.flappy_bird.Position.Position;
+import org.academiadecodigo.codezillas.flappy_bird.position.GridPosition;
+import org.academiadecodigo.codezillas.flappy_bird.position.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 

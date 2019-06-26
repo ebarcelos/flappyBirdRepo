@@ -1,4 +1,4 @@
-package org.academiadecodigo.codezillas.flappy_bird.GameObject.PointCounter;
+package org.academiadecodigo.codezillas.flappy_bird.objects.score;
 
 import org.academiadecodigo.simplegraphics.graphics.Text;
 

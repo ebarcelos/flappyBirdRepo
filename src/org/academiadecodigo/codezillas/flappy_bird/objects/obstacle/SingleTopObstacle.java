@@ -1,11 +1,11 @@
-package org.academiadecodigo.codezillas.flappy_bird.GameObject.Obstacle;
+package org.academiadecodigo.codezillas.flappy_bird.objects.obstacle;
 
-import org.academiadecodigo.codezillas.flappy_bird.Position.Position;
+import org.academiadecodigo.codezillas.flappy_bird.position.Position;
 import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class SingleBottomObstacle implements Obstacle {
+public class SingleTopObstacle implements Obstacle {
 
     private Position position;
     private Rectangle hitbox;
@@ -15,43 +15,45 @@ public class SingleBottomObstacle implements Obstacle {
     private int obstWidth;
     private int obstHeight;
 
-    public SingleBottomObstacle(int width, int height, ObstacleType type) {
+    public SingleTopObstacle(int width, int height, ObstacleType type) {
         this.obstWidth = width;
         this.obstHeight = height;
 
-        position = new Position(Position.width, Position.height-obstHeight);
-        hitbox = new Rectangle(position.getX(), position.getY(), obstWidth, obstHeight);
-
+        position = new Position(Position.width, 0);
+        hitbox = new Rectangle(position.getX(), 0, obstWidth, obstHeight);
 //        picture = new Picture(hitbox.getX(), hitbox.getY(), type.getPath());
-//        picture.grow(hitbox.getWidth() - picture.getWidth(), hitbox.getHeight() - picture.getHeight());
     }
 
-    public void init() {
-        hitbox.setColor(Color.RED);
+    public void init(){
+        hitbox.setColor(Color.GREEN);
         hitbox.fill();
 //        picture.draw();
+    }
+
+    public Rectangle getHitbox(){
+        return hitbox;
     }
 
     @Override
     public void moveObstacle() {
         int initX = position.getX();
         position.setX(position.getX() - 1);
-
         hitbox.translate(position.getX() - initX, 0);
+
 //        picture.translate(position.getX() - initX, 0);
 
         checkFinalPosition();
     }
 
-    private void checkFinalPosition() {
+    private void checkFinalPosition () {
         this.passedBird = (this.position.getX() + obstWidth) < 0;
     }
 
-    public boolean hasPassedBird() {
+    public boolean hasPassedBird () {
         return passedBird;
     }
 
-    public Position getPosition () {
+    public Position getPosition() {
         return position;
     }
 
@@ -63,7 +65,10 @@ public class SingleBottomObstacle implements Obstacle {
         return genObstacle;
     }
 
-    public boolean checkCollision(Rectangle birdHitbox) {
+    public boolean checkCollision(Rectangle birdHitbox){
+
         return hitbox.intersects(birdHitbox);
+
     }
+
 }

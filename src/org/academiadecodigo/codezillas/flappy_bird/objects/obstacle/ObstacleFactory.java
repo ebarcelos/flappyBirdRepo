@@ -1,4 +1,4 @@
-package org.academiadecodigo.codezillas.flappy_bird.GameObject.Obstacle;
+package org.academiadecodigo.codezillas.flappy_bird.objects.obstacle;
 
 public class ObstacleFactory {
 

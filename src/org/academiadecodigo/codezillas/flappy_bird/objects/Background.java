@@ -1,9 +1,6 @@
-package org.academiadecodigo.codezillas.flappy_bird.GameObject;
-import org.academiadecodigo.codezillas.flappy_bird.Position.*;
+package org.academiadecodigo.codezillas.flappy_bird.objects;
+import org.academiadecodigo.codezillas.flappy_bird.position.*;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-
-import java.util.LinkedList;
-import java.util.List;
 
 public class Background {
     private Position position;

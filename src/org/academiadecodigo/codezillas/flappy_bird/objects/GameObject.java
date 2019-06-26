@@ -1,4 +1,4 @@
-package org.academiadecodigo.codezillas.flappy_bird.GameObject;
+package org.academiadecodigo.codezillas.flappy_bird.objects;
 
 public interface GameObject {
 
