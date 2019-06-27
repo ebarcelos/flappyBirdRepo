@@ -46,16 +46,25 @@ public class RunObstacle extends Thread {
 
                 obstacles[i].moveObstacle();
 
-                if (obstacles[i].getPosition().getX() + 150 < 0) {
+                if (obstacles[i].getPosition().getX() + 134 < 0) {
                     ObstacleCounter.addCounter();
                     obstacles[i] = null;
                     continue;
                 }
 
-                if (obstacles[i].getPosition().getX() < GridPosition.width - (GridPosition.width / difficultyLevel)) {
-                    if (!obstacles[i].hasGenObstacle()) {
-                        obstacles[i].genObstacle();
-                        fillNextNull();
+                if (obstacles[i] instanceof DoubleObstacle) {
+                    if (obstacles[i].getPosition().getX() < GridPosition.width - (GridPosition.width / difficultyLevel)) {
+                        if (!obstacles[i].hasGenObstacle()) {
+                            obstacles[i].genObstacle();
+                            fillNextNull();
+                        }
+                    }
+                } else {
+                    if (obstacles[i].getPosition().getX() + obstacles[i].getWidth() < GridPosition.width - (GridPosition.width / difficultyLevel)) {
+                        if (!obstacles[i].hasGenObstacle()) {
+                            obstacles[i].genObstacle();
+                            fillNextNull();
+                        }
                     }
                 }
 
@@ -63,7 +72,7 @@ public class RunObstacle extends Thread {
                     return;
                 }
 
-                if (ObstacleCounter.getCounter() > (difficultyLevel * OBSTACLE_INCREASE_DELTA)) {
+                if (ObstacleCounter.getCounter() == (difficultyLevel * OBSTACLE_INCREASE_DELTA)) {
                     increaseDifficulty();
                 }
 

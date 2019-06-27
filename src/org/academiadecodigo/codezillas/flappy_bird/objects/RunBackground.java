@@ -1,23 +1,25 @@
 package org.academiadecodigo.codezillas.flappy_bird.objects;
 
-public class RunBackground implements Runnable {
+public class RunBackground extends Thread {
+
+    private Background background;
+
+    public RunBackground() {
+    }
 
     @Override
     public void run() {
-        Background background = new Background();
+        background = new Background();
         background.initBackground();
 
-        while (true) {
+        try {
+            while (true) {
+                Thread.sleep(50);
+                background.scroll();
 
-            background.scroll();
-
-            try {
-
-                Thread.sleep(20);
-
-            } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
             }
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
         }
     }
 }

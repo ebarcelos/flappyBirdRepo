@@ -5,84 +5,64 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
-public class DoubleObstacle implements Obstacle {
+public class DoubleObstacle extends ObstacleSuperClass {
 
-    private Position position;
     private Rectangle topHitbox;
     private Rectangle bottomHitbox;
     private Picture topPicture;
     private Picture bottomPicture;
-    private boolean passedBird;
-    private boolean genObstacle;
-    private int obstWidth = 134;
-    private int obstHeight = 564;
-    private int opening = 250;
-    private int minTopHeight = 60;
+    private final int opening = 250;
+    private final int minTopHeight = 60;
 
-    public DoubleObstacle(ObstacleType topType, ObstacleType bottomType) {
+    public DoubleObstacle(int width, int height, ObstacleType topType, ObstacleType bottomType) {
+        setObstWidth(width);
+        setObstHeight(height);
         int genTopRectPos = genTopRectPos();
-        position = new Position(Position.width, genTopRectPos);
+        setPosition(new Position(Position.width, genTopRectPos));
 
-        topHitbox = new Rectangle(position.getX(), genTopRectPos, obstWidth, obstHeight);
-        bottomHitbox = new Rectangle(position.getX(), position.getY() + obstHeight + minTopHeight + opening, obstWidth, obstHeight);
+        topHitbox = new Rectangle(getPosition().getX(), genTopRectPos, getObstWidth(), getObstHeight());
+        bottomHitbox = new Rectangle(getPosition().getX(), getPosition().getY() + getObstHeight() + minTopHeight + opening, getObstWidth(), getObstHeight());
 
-//        topPicture = new Picture(topHitbox.getX(), topHitbox.getY(), topType.getPath());
-//        bottomPicture = new Picture(bottomHitbox.getX(), bottomHitbox.getY(), bottomType.getPath());
+        topPicture = new Picture(topHitbox.getX()-10, topHitbox.getY()+1, topType.getPath());
+        bottomPicture = new Picture(bottomHitbox.getX()-10, bottomHitbox.getY()-1, bottomType.getPath());
     }
 
     private int genTopRectPos () {
         int range = Position.height - (2 * minTopHeight) - opening;
         int rand = (int) (Math.random() * range);
-        return minTopHeight - obstHeight + rand;
+        return minTopHeight - getObstHeight() + rand;
     }
 
+    @Override
     public void init() {
-        topHitbox.setColor(Color.CYAN);
-        topHitbox.fill();
+        //topHitbox.setColor(Color.CYAN);
+        topHitbox.draw();
 
-        bottomHitbox.setColor(Color.BLUE);
-        bottomHitbox.fill();
+        //bottomHitbox.setColor(Color.BLUE);
+        bottomHitbox.draw();
 
-//        topPicture.draw();
-//        bottomPicture.draw();
+        topPicture.draw();
+        bottomPicture.draw();
     }
 
     @Override
     public void moveObstacle() {
-        int initX = position.getX();
-        position.setX(position.getX() - 1);
+        int initX = getPosition().getX();
+        getPosition().setX(getPosition().getX() - 1);
 
-        topHitbox.translate(position.getX() - initX, 0);
-        bottomHitbox.translate(position.getX() - initX, 0);
+        topHitbox.translate(getPosition().getX() - initX, 0);
+        bottomHitbox.translate(getPosition().getX() - initX, 0);
 
-//        topPicture.translate(position.getX() - initX, 0);
-//        bottomPicture.translate(position.getX() - initX, 0);
-
-        checkFinalPosition();
+        topPicture.translate(getPosition().getX() - initX, 0);
+        bottomPicture.translate(getPosition().getX() - initX, 0);
     }
 
-    private void checkFinalPosition () {
-        this.passedBird = (this.position.getX() + obstWidth) < 0;
-    }
-
-    public boolean hasPassedBird () {
-        return passedBird;
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-
-    public void genObstacle () {
-        genObstacle = true;
-    }
-
-    public boolean hasGenObstacle () {
-        return genObstacle;
-    }
-
+    @Override
     public boolean checkCollision(Rectangle birdHitbox){
         return topHitbox.intersects(birdHitbox) || bottomHitbox.intersects(birdHitbox);
     }
 
+    public int getWidth() {
+        return getObstWidth();
+    }
 }

@@ -10,8 +10,7 @@ public class GridPosition {
     public static int width;
     Rectangle canvas;
 
-    public GridPosition() {
-    }
+    public GridPosition() {}
 
     public GridPosition (int width, int height) {
         this.width = width;
@@ -38,9 +37,5 @@ public class GridPosition {
 
     public void setY(int yValue) {
         this.yPos = yValue;
-    }
-
-    public int getWidth() {
-        return width;
     }
 }

@@ -5,7 +5,4 @@ public interface GameObject {
     void moveObstacle();
 
     void init();
-
-    boolean hasPassedBird();
-
 }

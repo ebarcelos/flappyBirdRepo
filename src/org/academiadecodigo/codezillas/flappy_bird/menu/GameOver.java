@@ -13,7 +13,7 @@ public class GameOver implements KeyboardHandler {
     private Keyboard keyboard = new Keyboard(this);
 
     public GameOver() {
-        picture = new Picture(0, 0, "resources/img/Background/endMenu.jpg");
+        picture = new Picture(0, 0, "resources/img/Background/endMenu.png");
     }
 
     public void initGameOver(){
@@ -26,7 +26,7 @@ public class GameOver implements KeyboardHandler {
         picture.draw();
     }
 
-    public boolean hasRestartGame() {
+    public boolean hasRestartedGame() {
         return restartGame;
     }
 

@@ -46,13 +46,13 @@ public class ObstacleFactory {
 
         switch (randSingle) {
             case 0:
-                return new DoubleObstacle(ObstacleType.BLUE_PIPE_UP, ObstacleType.BLUE_PIPE_DOWN);
+                return new DoubleObstacle(115, 564, ObstacleType.BLUE_PIPE_UP, ObstacleType.BLUE_PIPE_DOWN);
             case 1:
-                return new DoubleObstacle(ObstacleType.GREEN_PIPE_UP, ObstacleType.GREEN_PIPE_DOWN);
+                return new DoubleObstacle(115, 564, ObstacleType.GREEN_PIPE_UP, ObstacleType.GREEN_PIPE_DOWN);
             case 2:
-                return new DoubleObstacle(ObstacleType.YELLOW_PIPE_UP, ObstacleType.YELLOW_PIPE_DOWN);
+                return new DoubleObstacle(115, 564, ObstacleType.YELLOW_PIPE_UP, ObstacleType.YELLOW_PIPE_DOWN);
             default:
-                return new DoubleObstacle(ObstacleType.RED_PIPE_UP, ObstacleType.RED_PIPE_DOWN);
+                return new DoubleObstacle(115, 564, ObstacleType.RED_PIPE_UP, ObstacleType.RED_PIPE_DOWN);
         }
     }
 }
