@@ -1,21 +1,43 @@
 package org.academiadecodigo.codezillas.flappy_bird.objects.obstacle;
 
-import org.academiadecodigo.codezillas.flappy_bird.position.Position;
+import org.academiadecodigo.codezillas.flappy_bird.position.GridPosition;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
-public interface Obstacle {
+public abstract class Obstacle implements Movable {
 
-    void init();
+    private int width;
+    private int height;
+    private GridPosition position;
 
-    void moveObstacle();
+    int getHeight() {
+        return this.height;
+    }
 
-    boolean checkCollision(Rectangle birdHitbox);
+    void setHeight(int height) {
+        this.height = height;
+    }
 
-    Position getPosition();
+    @Override
+    public int getWidth() {
+        return this.width;
+    }
 
-    void genObstacle ();
+    void setWidth(int width) {
+        this.width = width;
+    }
 
-    boolean hasGenObstacle ();
+    public void setPosition(GridPosition position) {
+        this.position = position;
+    }
 
-    int getWidth();
+    @Override
+    public GridPosition getPosition() {
+        return this.position;
+    }
+
+    @Override
+    public abstract void move();
+
+    @Override
+    public abstract boolean checkCollision(Rectangle birdHitbox);
 }

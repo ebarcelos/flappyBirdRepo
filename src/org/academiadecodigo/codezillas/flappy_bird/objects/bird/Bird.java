@@ -1,8 +1,7 @@
 package org.academiadecodigo.codezillas.flappy_bird.objects.bird;
 
+import org.academiadecodigo.codezillas.flappy_bird.GameConfig;
 import org.academiadecodigo.codezillas.flappy_bird.position.GridPosition;
-import org.academiadecodigo.codezillas.flappy_bird.position.Position;
-import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -13,7 +12,7 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class Bird implements KeyboardHandler {
 
-    private Position position;
+    private GridPosition position;
     private Rectangle hitbox;
     private Picture picture;
     private int birdWidth;
@@ -27,10 +26,11 @@ public class Bird implements KeyboardHandler {
 //    Rectangle hitbox2;
 //    Rectangle hitbox3;
 
+    //TODO: Magic numbers
     public Bird(int birdWidth, int birdHeight) {
         this.birdWidth = birdWidth;
         this.birdHeight = birdHeight;
-        position = new Position(100, (720 / 2) - (this.birdHeight / 2));
+        position = new GridPosition(100, (720 / 2) - (this.birdHeight / 2));
         hitbox = new Rectangle(position.getX(), position.getY(), this.birdWidth-20, this.birdHeight-20);
 
 //        hitbox1 = new Rectangle(position.getX(), position.getY(), this.birdWidth-20, this.birdHeight/3);
@@ -98,7 +98,8 @@ public class Bird implements KeyboardHandler {
     public void fall() {
         int yInit = position.getY();
 
-        if (position.getY() + 135 < GridPosition.height) {
+        //TODO: Magic
+        if (position.getY() + 135 < GameConfig.SCREEN_HEIGHT) {
             this.position.setY(yInit + 2);
             hitbox.translate(0, this.position.getY() - yInit);
             picture.translate(0, this.position.getY() - yInit);
@@ -107,6 +108,7 @@ public class Bird implements KeyboardHandler {
 
     public void jump() {
         if (timerStarted) {
+            //TODO: Add to gameconfig
             picture.load("resources/img/BirdUp.png");
             timer += 0.1;
             if (position.getY() > 0) {

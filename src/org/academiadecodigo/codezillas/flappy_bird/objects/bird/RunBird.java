@@ -7,6 +7,7 @@ public class RunBird extends Thread {
     private Bird bird;
 
     public RunBird () {
+        //TODO: Magic numbers
         bird = new Bird(150, 129);
         bird.initBird();
     }
@@ -15,12 +16,13 @@ public class RunBird extends Thread {
     public void run () {
         try {
             while (true) {
+                //TODO: oi
                 Thread.sleep(5);
                 bird.jump();
                 bird.fall();
             }
         } catch (InterruptedException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 

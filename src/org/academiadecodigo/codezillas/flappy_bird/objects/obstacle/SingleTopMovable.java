@@ -1,21 +1,24 @@
 package org.academiadecodigo.codezillas.flappy_bird.objects.obstacle;
 
-import org.academiadecodigo.codezillas.flappy_bird.position.Position;
+import org.academiadecodigo.codezillas.flappy_bird.GameConfig;
+import org.academiadecodigo.codezillas.flappy_bird.position.GridPosition;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class SingleTopObstacle extends ObstacleSuperClass {
+public class SingleTopMovable extends Obstacle {
 
+    //TODO: Consider moving this constructor and these properties to the super class
+    //TODO: Make sure it does not interfere with DoubleMovable
     private Rectangle hitbox;
     private Picture picture;
 
-    public SingleTopObstacle(int width, int height, ObstacleType type) {
-        setObstWidth(width);
-        setObstHeight(height);
+    public SingleTopMovable(int width, int height, ObstacleType type) {
+        setWidth(width);
+        setHeight(height);
 
-        setPosition(new Position(Position.width, 0));
-        hitbox = new Rectangle(getPosition().getX(), 0, getObstWidth(), getObstHeight());
+        setPosition(new GridPosition(GameConfig.SCREEN_WIDTH, 0));
+        hitbox = new Rectangle(getPosition().getX(), 0, getWidth(), getHeight());
 //        picture = new Picture(hitbox.getX(), hitbox.getY(), type.getPath());
     }
 
@@ -27,7 +30,13 @@ public class SingleTopObstacle extends ObstacleSuperClass {
     }
 
     @Override
-    public void moveObstacle() {
+    public void hide() {
+        //picture.delete();
+        hitbox.delete();
+    }
+
+    @Override
+    public void move() {
         int initX = getPosition().getX();
         getPosition().setX(getPosition().getX() - 1);
 
@@ -38,9 +47,5 @@ public class SingleTopObstacle extends ObstacleSuperClass {
     @Override
     public boolean checkCollision(Rectangle birdHitbox){
         return hitbox.intersects(birdHitbox);
-    }
-
-    public int getWidth() {
-        return getObstWidth();
     }
 }

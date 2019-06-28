@@ -1,20 +1,17 @@
 package org.academiadecodigo.codezillas.flappy_bird.objects;
 
+import org.academiadecodigo.codezillas.flappy_bird.GameConfig;
+
 public class RunBackground extends Thread {
-
-    private Background background;
-
-    public RunBackground() {
-    }
 
     @Override
     public void run() {
-        background = new Background();
+        Background background = new Background();
         background.initBackground();
 
         try {
             while (true) {
-                Thread.sleep(50);
+                Thread.sleep(GameConfig.SCREEN_SCROLL_DELAY);
                 background.scroll();
 
             }

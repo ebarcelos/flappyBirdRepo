@@ -1,10 +1,11 @@
 package org.academiadecodigo.codezillas.flappy_bird.game;
 
+import org.academiadecodigo.codezillas.flappy_bird.GameConfig;
 import org.academiadecodigo.codezillas.flappy_bird.objects.Background;
 import org.academiadecodigo.codezillas.flappy_bird.objects.RunBackground;
 import org.academiadecodigo.codezillas.flappy_bird.objects.bird.*;
 import org.academiadecodigo.codezillas.flappy_bird.objects.obstacle.RunObstacle;
-import org.academiadecodigo.codezillas.flappy_bird.objects.score.ObstacleCounter;
+import org.academiadecodigo.codezillas.flappy_bird.objects.score.Score;
 import org.academiadecodigo.codezillas.flappy_bird.menu.GameOver;
 import org.academiadecodigo.codezillas.flappy_bird.menu.Menu;
 import org.academiadecodigo.codezillas.flappy_bird.position.GridPosition;
@@ -20,16 +21,20 @@ public class Game {
 //        background = new Background();
 //        runBackground.run();
 
-        GridPosition grid = new GridPosition(1280, 720);
-        grid.init();
+        GridPosition grid = new GridPosition(GameConfig.SCREEN_WIDTH, GameConfig.SCREEN_HEIGHT);
 
-        Sound music = new Sound("/resources/sound/music/colhao_colhao80kbps.wav");
+        Sound music = new Sound(GameConfig.BGM);
+        music.play();
 
         Menu menu = new Menu();
         menu.initMenu();
 
         while (!menu.hasFinished()) {
-            System.out.println(); //DO NOTHING
+            try {
+                Thread.sleep(0); //DO NOTHING
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
 
@@ -39,21 +44,28 @@ public class Game {
             runBird = new RunBird();
             runBird.start();
 
-            ObstacleCounter.restartCounter();
-            ObstacleCounter.showCounter();
+            Score.restartCounter();
+            Score.render();
 
             runObstacle = new RunObstacle(runBird.birdHitbox());
             runObstacle.run();
 
             gameOver = new GameOver();
-            Sound sound = new Sound("/resources/sound/effects/dieballs.wav");
+            Sound sound = new Sound(GameConfig.LOSS_SOUND_EFFECT);
             sound.play();
             gameOver.initGameOver();
 
+            //TODO: find better name for restart
             while (!gameOver.hasRestartedGame()) {
-                System.out.println(); //DO NOTHING
+                try {
+                    Thread.sleep(0);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
             if(gameOver.hasRestartedGame()){
+                //TODO: restart should hide ALL pipes, hitboxes, and birds
+                //TODO: restart should CLEAR the obstacles linkedList
                 gameOver.changeRestart();
             }
         }

@@ -1,94 +1,114 @@
 package org.academiadecodigo.codezillas.flappy_bird.objects.obstacle;
 
-import org.academiadecodigo.codezillas.flappy_bird.objects.score.ObstacleCounter;
-import org.academiadecodigo.codezillas.flappy_bird.position.GridPosition;
+import org.academiadecodigo.codezillas.flappy_bird.GameConfig;
+import org.academiadecodigo.codezillas.flappy_bird.objects.score.Score;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+
+import java.util.LinkedList;
+import java.util.ListIterator;
 
 public class RunObstacle extends Thread {
 
-    private Obstacle[] obstacles;
+    private LinkedList<Movable> movables = new LinkedList<Movable>();
     private Rectangle targetHitbox;
-    private static final int MIN_DIFICULTY = 1;
-    private static final int MAX_DIFICULTY = 4;
+    private static final int MIN_DIFFICULTY = 1;
+    private static final int MAX_DIFFICULTY = 4;
     private static final int OBSTACLE_INCREASE_DELTA = 5;
     private int difficultyLevel;
 
-    public RunObstacle (Rectangle targetHitbox) {
+    public RunObstacle(Rectangle targetHitbox) {
         this.targetHitbox = targetHitbox;
-        difficultyLevel = MIN_DIFICULTY;
-
-        obstacles = new Obstacle[MAX_DIFICULTY + 1];
-    }
-
-    public void increaseDifficulty() {
-        if (this.difficultyLevel < MAX_DIFICULTY) {
-            difficultyLevel++;
-        }
+        difficultyLevel = MIN_DIFFICULTY;
     }
 
     @Override
-    public void run () {
-        fillNextNull();
-        ObstacleCounter.growSize();
+    public void run() {
+        //TODO: Print value to see if it's the intended value
+        int spawnThreshold = GameConfig.SCREEN_WIDTH - (GameConfig.SCREEN_WIDTH / difficultyLevel);
+
+        setup();
 
         while (true) {
 
-            try {
-                Thread.sleep(5);
-            } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
-            }
+            //TODO: Reimplement Thread.sleep invocation if game loop is too fast
+            //TODO: Use a while loop with iterator
+            ListIterator<Movable> it = movables.listIterator();
 
-            for (int i = 0; i < obstacles.length; i++) {
-                if (obstacles[i] == null) {
+            while (it.hasNext()) {
+                Movable movable = it.next();
+
+                if (movable == null) {
                     continue;
                 }
 
-                obstacles[i].moveObstacle();
+                movable.move();
 
-                if (obstacles[i].getPosition().getX() + 134 < 0) {
-                    ObstacleCounter.addCounter();
-                    obstacles[i] = null;
+                if (obstacleCleared(movable)) {
+                    Score.increase();
+                    //TODO: implement hide otherwise you'll have a compile error
+                    movable.hide();
+                    it.remove();
                     continue;
                 }
 
-                if (obstacles[i] instanceof DoubleObstacle) {
-                    if (obstacles[i].getPosition().getX() < GridPosition.width - (GridPosition.width / difficultyLevel)) {
-                        if (!obstacles[i].hasGenObstacle()) {
-                            obstacles[i].genObstacle();
-                            fillNextNull();
-                        }
+                //TODO: Clean this
+                //TODO: We don't know in how many iterations this will be true before the pipe
+                //leaves the screen
+                if (movable instanceof DoubleMovable) {
+                    //TODO: Maybe have a set X threshold instead of a valid interval
+                    if (movable.getPosition().getX() == spawnThreshold) {
+                        spawnPipe(it);
                     }
                 } else {
-                    if (obstacles[i].getPosition().getX() + obstacles[i].getWidth() < GridPosition.width - (GridPosition.width / difficultyLevel)) {
-                        if (!obstacles[i].hasGenObstacle()) {
-                            obstacles[i].genObstacle();
-                            fillNextNull();
-                        }
+                    if (movable.getPosition().getX() + movable.getWidth() == spawnThreshold) {
+                        spawnPipe(it);
                     }
                 }
 
-                if (obstacles[i].checkCollision(targetHitbox)) {
+                if (movable.checkCollision(targetHitbox)) {
                     return;
                 }
 
-                if (ObstacleCounter.getCounter() == (difficultyLevel * OBSTACLE_INCREASE_DELTA)) {
-                    increaseDifficulty();
+                increaseDifficulty();
+
+                Score.render();
+
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-
-                ObstacleCounter.showCounter();
             }
         }
     }
 
-    private void fillNextNull() {
-        for (int i=0; i<obstacles.length; i++) {
-            if (obstacles[i] == null) {
-                obstacles[i] = ObstacleFactory.getNewObstacle();
-                obstacles[i].init();
-                return;
-            }
-        }
+    private void setup() {
+        Movable obj = ObstacleFactory.getNewObstacle();
+        movables.add(obj);
+        obj.init();
+
+        Score.render();
     }
 
+    private boolean obstacleCleared(Movable movable) {
+        return movable.getPosition().getX() + movable.getWidth() < 0;
+    }
+
+    private void spawnPipe(ListIterator<Movable> it) {
+        if (movables.size() > MAX_DIFFICULTY) {
+            return;
+        }
+
+        Movable obj = ObstacleFactory.getNewObstacle();
+        it.add(obj);
+        obj.init();
+    }
+
+    private void increaseDifficulty() {
+        if (difficultyLevel >= MAX_DIFFICULTY) {
+            return;
+        }
+
+        difficultyLevel = Score.getCounter() / OBSTACLE_INCREASE_DELTA + 1;
+    }
 }

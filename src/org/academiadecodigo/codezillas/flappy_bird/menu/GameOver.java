@@ -1,5 +1,6 @@
 package org.academiadecodigo.codezillas.flappy_bird.menu;
 
+import org.academiadecodigo.codezillas.flappy_bird.GameConfig;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -13,7 +14,7 @@ public class GameOver implements KeyboardHandler {
     private Keyboard keyboard = new Keyboard(this);
 
     public GameOver() {
-        picture = new Picture(0, 0, "resources/img/Background/endMenu.png");
+        picture = new Picture(0, 0, GameConfig.END_MENU_IMAGE);
     }
 
     public void initGameOver(){

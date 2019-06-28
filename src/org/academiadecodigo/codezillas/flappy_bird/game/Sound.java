@@ -1,7 +1,6 @@
 package org.academiadecodigo.codezillas.flappy_bird.game;
 
 
-
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
@@ -9,30 +8,24 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 
-// SOM PRECISA DE BARRA ANTES DE RESOURCES, AS IMAGENS NÃO.
-
 public class Sound {
 
     private Clip clip;
     private URL soundURL;
 
     public Sound(String path) {
-
         initClip(path);
     }
 
     public void play() {
-
         clip.start();
     }
 
     public void stop() {
-
         clip.stop();
     }
 
     public void close() {
-
         clip.close();
     }
 
@@ -45,10 +38,8 @@ public class Sound {
         AudioInputStream inputStream = null;
 
         try {
-
             inputStream = AudioSystem.getAudioInputStream(soundURL);
             clip.open(inputStream);
-
         } catch (LineUnavailableException ex) {
             System.out.println(ex.getMessage());
         } catch (IOException ex) {
@@ -64,7 +55,6 @@ public class Sound {
         AudioInputStream inputStream = null;
 
         try {
-
             if (soundURL == null) {
                 path = path.substring(1);
                 File file = new File(path);
@@ -74,7 +64,6 @@ public class Sound {
             inputStream = AudioSystem.getAudioInputStream(soundURL);
             clip = AudioSystem.getClip();
             clip.open(inputStream);
-
         } catch (MalformedURLException ex) {
             System.out.println(ex.getMessage());
         } catch (UnsupportedAudioFileException ex) {

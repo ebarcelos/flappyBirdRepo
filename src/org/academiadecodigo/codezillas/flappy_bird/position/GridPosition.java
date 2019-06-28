@@ -1,41 +1,28 @@
 package org.academiadecodigo.codezillas.flappy_bird.position;
 
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-
 public class GridPosition {
 
-    private int xPos;
-    private int yPos;
-    public static int height;
-    public static int width;
-    Rectangle canvas;
+    private int x;
+    private int y;
 
-    public GridPosition() {}
-
-    public GridPosition (int width, int height) {
-        this.width = width;
-        this.height = height;
-
-        canvas = new Rectangle(0, 0, width, height);
-    }
-
-    public void init () {
-        canvas.draw();
+    public GridPosition(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     public int getX() {
-        return xPos;
+        return x;
     }
 
     public int getY() {
-        return yPos;
+        return y;
     }
 
-    public void setX(int xValue) {
-        this.xPos = xValue;
+    public void setX(int x) {
+        this.x = x;
     }
 
-    public void setY(int yValue) {
-        this.yPos = yValue;
+    public void setY(int y) {
+        this.y = y;
     }
 }
